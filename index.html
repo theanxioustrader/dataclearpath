@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DataClearPath | We Turn Paper Chaos Into Digital Systems</title>
+<meta name="description" content="DataClearPath builds custom databases, dashboards, and mobile apps for small businesses still running on paper. AI-powered builds. You own everything. New York."/>
+<meta property="og:title" content="DataClearPath | From Paper to Digital"/>
+<meta property="og:description" content="We replace your paper systems with digital ones — built specifically for how your business works."/>
+<meta property="og:url" content="https://www.dataclearpath.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0d1117;--ink2:#161b27;--amber:#f59e0b;--amber2:#fbbf24;
+  --red:#dc2626;--green:#16a34a;--cream:#fdfbf7;--cream2:#f5f0e8;
+  --border:#e5ddd0;--mid:#6b7280;--white:#fff;
+  --gold-pale:rgba(245,158,11,.1);--gold-border:rgba(245,158,11,.25);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--ink);overflow-x:hidden;background:var(--cream);}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--amber);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,17,23,.97);padding:.875rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(245,158,11,.1);}
+.logo{display:flex;align-items:center;gap:.75rem;}
+.logo img{height:32px;width:auto;}
+.logo-text{font-size:1rem;font-weight:900;color:var(--white);}
+.logo-text span{color:var(--amber);}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--amber);}
+.nav-cta{background:var(--amber)!important;color:#000!important;padding:.5rem 1.25rem;border-radius:6px;font-weight:800!important;}
+.hamburger{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;}
+
+/* AI BADGE — top strip */
+.ai-strip{background:linear-gradient(90deg,#1a0533,#0d1117,#1a0533);border-bottom:1px solid rgba(245,158,11,.15);padding:.45rem 2rem;text-align:center;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:.6rem;}
+.ai-strip span{color:var(--amber);}
+.ai-pill{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);color:var(--amber);padding:.15rem .65rem;border-radius:20px;font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;}
+
+/* HERO */
+#home{height:100vh;min-height:680px;display:grid;grid-template-columns:1fr 1fr;position:relative;margin-top:0;padding-top:62px;}
+@media(max-width:900px){#home{grid-template-columns:1fr;height:auto;min-height:100vh;}}
+.hero-left{position:relative;overflow:hidden;background:var(--ink);}
+.chaos-bg{position:absolute;inset:0;background-image:url('chaos-desk.png');background-size:cover;background-position:center;filter:brightness(.28) saturate(.8);}
+.chaos-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(220,38,38,.12),transparent 60%),linear-gradient(to top,rgba(13,17,23,.9) 0%,transparent 50%);}
+.hero-left-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:3.5rem 2.5rem;}
+.chaos-label{display:inline-flex;align-items:center;gap:.5rem;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.35);color:#fca5a5;font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.4rem .9rem;border-radius:3px;margin-bottom:1.25rem;width:fit-content;}
+.hero-left h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:.75rem;}
+.hero-left h2 span{color:#fca5a5;}
+.chaos-items{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem;}
+.ci{font-size:.875rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.6rem;}
+.ci i{color:#f87171;font-size:.75rem;}
+.hero-divider{position:absolute;left:50%;top:62px;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--amber),transparent);z-index:10;transform:translateX(-50%);}
+.divider-arrow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:11;box-shadow:0 0 0 6px rgba(245,158,11,.15),0 0 0 12px rgba(245,158,11,.07);}
+.divider-arrow i{color:#000;font-size:1rem;}
+@media(max-width:900px){.hero-divider{display:none;}}
+.hero-right{background:var(--ink2);display:flex;flex-direction:column;justify-content:center;padding:7rem 3rem 3.5rem;}
+@media(max-width:900px){.hero-right{padding:3rem 2rem 3.5rem;}}
+.typewriter-label{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.875rem;}
+.typewriter-line{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;color:var(--amber);min-height:2rem;margin-bottom:2rem;}
+.cursor{display:inline-block;width:2px;height:1.2em;background:var(--amber);margin-left:2px;animation:blink .75s infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-right h1{font-size:clamp(2.5rem,5vw,4.25rem);font-weight:900;color:var(--white);line-height:1.0;letter-spacing:-.02em;margin-bottom:1.25rem;}
+.hero-right h1 em{color:var(--amber);font-style:normal;}
+.hero-sub{color:rgba(255,255,255,.45);font-size:1rem;line-height:1.8;margin-bottom:2rem;font-weight:300;max-width:420px;}
+.cost-ticker{background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);border-radius:8px;padding:1rem 1.35rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
+.ticker-label{font-size:.72rem;font-weight:700;color:#fca5a5;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;}
+.ticker-amount{font-size:1.85rem;font-weight:900;color:#f87171;letter-spacing:-.02em;}
+.ticker-sub{font-size:.7rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem;}
+.hero-cta-row{display:flex;gap:.875rem;flex-wrap:wrap;}
+.btn-amber{background:var(--amber);color:#000;padding:1rem 2rem;border-radius:6px;text-decoration:none;font-weight:800;font-size:.9rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-amber:hover{background:var(--amber2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(245,158,11,.35);}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);padding:1rem 2rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-outline:hover{border-color:var(--amber);color:var(--amber);}
+
+/* PROOF BAR */
+.proof-bar{background:var(--amber);padding:.9rem 2.5rem;display:flex;justify-content:center;align-items:center;gap:3rem;flex-wrap:wrap;}
+.proof-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:800;color:rgba(0,0,0,.65);}
+.proof-num{color:#000;font-weight:900;font-size:1rem;}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--ink);overflow:hidden;padding:.6rem 0;border-bottom:1px solid rgba(245,158,11,.1);}
+.marquee-track{display:flex;white-space:nowrap;animation:scroll 30s linear infinite;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.m-item{font-size:.68rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:0 2rem;display:inline-flex;align-items:center;gap:2rem;}
+.m-item::after{content:'✦';color:var(--amber);font-size:.5rem;}
+
+/* AI SECTION */
+.ai-section{background:linear-gradient(135deg,#0d1117 0%,#1a0533 50%,#0d1117 100%);padding:5rem 2.5rem;text-align:center;border-top:1px solid rgba(245,158,11,.08);border-bottom:1px solid rgba(245,158,11,.08);}
+.ai-inner{max-width:860px;margin:0 auto;}
+.ai-badge-big{display:inline-flex;align-items:center;gap:.6rem;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--amber);padding:.5rem 1.25rem;border-radius:30px;font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.75rem;}
+.ai-section h2{font-size:clamp(1.75rem,4vw,3rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em;}
+.ai-section h2 em{color:var(--amber);font-style:normal;}
+.ai-section p{color:rgba(255,255,255,.4);font-size:.975rem;line-height:1.85;font-weight:300;max-width:640px;margin:0 auto 3rem;}
+.ai-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);border-radius:12px;overflow:hidden;}
+@media(max-width:700px){.ai-cards{grid-template-columns:1fr;}}
+.ai-card{background:rgba(255,255,255,.02);padding:2rem 1.5rem;text-align:left;}
+.ai-card i{font-size:1.4rem;color:var(--amber);margin-bottom:1rem;display:block;}
+.ai-card h4{font-size:.9rem;font-weight:800;color:var(--white);margin-bottom:.5rem;}
+.ai-card p{font-size:.83rem;color:rgba(255,255,255,.35);line-height:1.65;}
+
+/* SECTIONS */
+.sec{padding:7rem 2.5rem;}
+.sec-inner{max-width:1180px;margin:0 auto;}
+.s-tag{font-size:.68rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin-bottom:.875rem;display:flex;align-items:center;gap:.65rem;}
+.s-tag::before{content:'';width:20px;height:2px;background:var(--amber);border-radius:1px;}
+.s-h{font-size:clamp(2rem,4vw,3.25rem);font-weight:900;line-height:1.05;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem;}
+.s-h-w{color:var(--white);}
+.s-sub{color:var(--mid);font-size:1rem;line-height:1.85;font-weight:300;}
+.rule{width:40px;height:3px;background:var(--amber);border-radius:2px;margin:1.25rem 0 3rem;}
+
+/* RECOGNIZE */
+#recognize{background:var(--cream2);}
+.recog-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+@media(max-width:900px){.recog-grid{grid-template-columns:1fr;gap:2.5rem;}}
+.chaos-photo-wrap{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18);}
+.chaos-photo-wrap img{width:100%;display:block;}
+.chaos-caption{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(13,17,23,.9));display:flex;align-items:flex-end;padding:1.5rem;}
+.chaos-caption p{color:var(--white);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.5rem;}
+.pain-stack{display:flex;flex-direction:column;gap:.875rem;}
+.recog-intro{color:var(--mid);font-size:1rem;line-height:1.8;font-weight:300;margin-bottom:2rem;}
+.pain-row{display:flex;gap:1rem;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:8px;padding:1.25rem 1.35rem;transition:all .3s;}
+.pain-row:hover{transform:translateX(6px);box-shadow:0 6px 24px rgba(0,0,0,.07);}
+.pain-emoji{font-size:1.35rem;flex-shrink:0;line-height:1.2;}
+.pain-text h4{font-size:.92rem;font-weight:800;color:var(--ink);margin-bottom:.25rem;}
+.pain-text p{font-size:.84rem;color:var(--mid);line-height:1.6;}
+
+/* VISION */
+#vision{background:var(--ink);}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;}
+@media(max-width:900px){.vision-grid{grid-template-columns:1fr;}}
+.digital-photo{border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(245,158,11,.1);}
+.digital-photo img{width:100%;display:block;}
+.v-list{display:flex;flex-direction:column;gap:.875rem;}
+.v-item{display:flex;gap:1.1rem;align-items:flex-start;padding:1.25rem 1.5rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;transition:all .3s;}
+.v-item:hover{background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.2);}
+.v-icon{width:38px;height:38px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:.9rem;flex-shrink:0;}
+.v-body h4{font-size:.92rem;font-weight:700;color:var(--white);margin-bottom:.25rem;}
+.v-body p{font-size:.84rem;color:rgba(255,255,255,.38);line-height:1.6;}
+
+/* COST */
+#cost{background:var(--white);}
+.cost-img{width:100%;max-width:840px;margin:0 auto 3.5rem;display:block;border-radius:12px;box-shadow:0 12px 50px rgba(0,0,0,.08);}
+.cost-table{border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.05);}
+.ct-head{display:grid;grid-template-columns:1.6fr 1fr 1fr;background:var(--ink);padding:1rem 2rem;}
+.cth{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.cth.gold{color:var(--amber);}
+.c-row{display:grid;grid-template-columns:1.6fr 1fr 1fr;padding:1.2rem 2rem;border-bottom:1px solid var(--border);align-items:center;transition:background .2s;}
+.c-row:last-child{border:none;}
+.c-row:hover{background:var(--cream2);}
+.c-sit{font-size:.9rem;font-weight:600;color:var(--ink);}
+.c-bad{font-size:.88rem;font-weight:700;color:var(--red);}
+.c-good{font-size:.88rem;font-weight:700;color:var(--green);}
+.wow-box{margin-top:2rem;background:var(--ink);border-radius:12px;padding:2.5rem 3rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+@media(max-width:700px){.wow-box{grid-template-columns:1fr;gap:1.5rem;}}
+.wb-text h3{font-size:1.65rem;font-weight:900;color:var(--white);line-height:1.25;margin-bottom:.5rem;}
+.wb-text p{color:rgba(255,255,255,.38);font-size:.9rem;line-height:1.75;font-weight:300;}
+.wb-num{text-align:center;}
+.wb-big{font-size:5rem;font-weight:900;color:var(--amber);line-height:1;letter-spacing:-.03em;}
+.wb-lbl{color:rgba(255,255,255,.28);font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;margin-top:.3rem;}
+
+/* HOW */
+#how{background:var(--cream2);}
+.steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:3rem;}
+@media(max-width:900px){.steps-row{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.steps-row{grid-template-columns:1fr;}}
+.step{background:var(--white);padding:2.25rem 2rem;transition:background .3s;}
+.step:hover{background:var(--cream);}
+.step-n{font-size:3.5rem;font-weight:900;color:#f0ebe2;line-height:1;margin-bottom:1.25rem;}
+.step h3{font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:.5rem;}
+.step p{font-size:.855rem;color:var(--mid);line-height:1.65;}
+.step-badge{display:inline-block;margin-top:.875rem;font-size:.67rem;font-weight:800;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;background:var(--gold-pale);border:1px solid var(--gold-border);padding:.22rem .65rem;border-radius:3px;}
+
+/* WHAT */
+#what{background:var(--white);}
+.what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
+@media(max-width:900px){.what-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.what-grid{grid-template-columns:1fr;}}
+.wc{background:var(--cream2);border:1px solid var(--border);border-radius:10px;padding:2rem 1.75rem;transition:all .3s;position:relative;overflow:hidden;}
+.wc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.wc:hover{background:var(--white);box-shadow:0 14px 40px rgba(0,0,0,.09);transform:translateY(-4px);}
+.wc:hover::after{transform:scaleX(1);}
+.wc-emoji{font-size:1.85rem;margin-bottom:1rem;display:block;}
+.wc-before{font-size:.72rem;font-weight:700;color:var(--red);margin-bottom:.5rem;display:flex;align-items:center;gap:.35rem;}
+.wc h3{font-size:.975rem;font-weight:800;color:var(--ink);margin-bottom:.45rem;}
+.wc p{font-size:.855rem;color:var(--mid);line-height:1.65;}
+
+/* PORTFOLIO */
+#portfolio{background:var(--cream2);}
+.port-list{display:flex;flex-direction:column;gap:5rem;margin-top:3.5rem;}
+.port-item{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;}
+.port-item.rev{grid-template-columns:1fr 1.2fr;}
+@media(max-width:900px){.port-item,.port-item.rev{grid-template-columns:1fr;gap:2rem;}}
+.port-img{border-radius:12px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.13);aspect-ratio:16/9;background:var(--ink);}
+.port-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.port-img:hover img{transform:scale(1.03);}
+.port-industry{font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:.875rem;}
+.port-item h3{font-size:1.75rem;font-weight:900;color:var(--ink);margin-bottom:1.25rem;line-height:1.15;letter-spacing:-.02em;}
+.port-prob{background:rgba(220,38,38,.04);border:1px solid rgba(220,38,38,.12);border-radius:8px;padding:1.1rem 1.35rem;margin-bottom:.875rem;}
+.port-sol{background:rgba(22,163,74,.04);border:1px solid rgba(22,163,74,.12);border-radius:8px;padding:1.1rem 1.35rem;margin-bottom:1.1rem;}
+.pb-lbl{font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;}
+.pb-lbl.r{color:var(--red);}
+.pb-lbl.g{color:var(--green);}
+.port-prob p,.port-sol p{font-size:.875rem;color:var(--mid);line-height:1.7;}
+.port-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.875rem;}
+.pt{background:var(--cream);border:1px solid var(--border);color:var(--mid);padding:.2rem .65rem;border-radius:3px;font-size:.72rem;font-weight:500;}
+.port-result{font-size:.875rem;font-weight:800;color:var(--green);display:flex;align-items:center;gap:.4rem;}
+.port-divider{height:1px;background:var(--border);}
+
+/* PRICING */
+#pricing{background:var(--ink);}
+.price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;margin-top:3.5rem;}
+@media(max-width:768px){.price-row{grid-template-columns:1fr;}}
+.p-col{background:var(--ink2);padding:2.5rem 2rem;position:relative;}
+.p-col.feat{background:rgba(245,158,11,.06);border-right:1px solid rgba(245,158,11,.12);border-left:1px solid rgba(245,158,11,.12);}
+.p-pip{position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--amber);color:#000;padding:.2rem 1.1rem;border-radius:0 0 6px 6px;font-size:.63rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
+.p-tier{font-size:.67rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.75rem;}
+.p-price{font-size:3.75rem;font-weight:900;color:var(--white);line-height:1;margin-bottom:.25rem;letter-spacing:-.03em;}
+.p-price small{font-size:.95rem;color:rgba(255,255,255,.25);font-weight:400;}
+.p-who{color:rgba(255,255,255,.33);font-size:.875rem;font-style:italic;line-height:1.7;margin:1rem 0 1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.07);}
+.p-list{list-style:none;margin-bottom:2rem;}
+.p-list li{padding:.5rem 0;color:rgba(255,255,255,.42);font-size:.875rem;display:flex;gap:.75rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.p-list li:last-child{border:none;}
+.p-list li i{color:var(--green);flex-shrink:0;margin-top:.15rem;}
+.p-btn-amber{display:block;text-align:center;padding:.9rem;border-radius:6px;background:var(--amber);color:#000;font-weight:900;font-size:.875rem;text-decoration:none;transition:all .3s;}
+.p-btn-amber:hover{background:var(--amber2);}
+.p-btn-line{display:block;text-align:center;padding:.9rem;border-radius:6px;border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.38);font-weight:600;font-size:.875rem;text-decoration:none;transition:all .3s;}
+.p-btn-line:hover{border-color:var(--amber);color:var(--amber);}
+.vs-wrap{max-width:880px;margin:3.5rem auto 0;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;overflow:hidden;}
+.vs-head{display:grid;grid-template-columns:1fr 1fr 1fr;padding:.875rem 2rem;background:rgba(0,0,0,.2);}
+.vs-th{font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.22);text-align:center;}
+.vs-th.g{color:var(--amber);}
+.vs-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;}
+.vs-row:last-child{border:none;}
+.vs-label{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.32);}
+.vs-no{font-size:.875rem;font-weight:700;color:#f87171;text-align:center;}
+.vs-yes{font-size:.875rem;font-weight:700;color:#4ade80;text-align:center;}
+.p-note{text-align:center;margin-top:2rem;color:rgba(255,255,255,.2);font-size:.875rem;}
+.p-note a{color:var(--amber);text-decoration:none;font-weight:700;}
+
+/* ABOUT */
+#about{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:6rem;align-items:start;margin-top:3rem;}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2.5rem;}}
+.about-card{background:var(--ink);border-radius:12px;padding:3rem;position:relative;overflow:hidden;}
+.about-card::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(245,158,11,.12),transparent 70%);pointer-events:none;}
+.ac-stats{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2.5rem;position:relative;z-index:1;}
+.ac-num{font-size:3rem;font-weight:900;color:var(--amber);line-height:1;letter-spacing:-.03em;}
+.ac-lbl{color:rgba(255,255,255,.28);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
+.ac-quote{font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.35);line-height:1.65;border-top:1px solid rgba(255,255,255,.07);padding-top:2rem;position:relative;z-index:1;}
+.about-text p{color:var(--mid);line-height:1.9;margin-bottom:1.25rem;font-weight:300;font-size:.95rem;}
+.about-text strong{color:var(--ink);font-weight:700;}
+.sk-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem;}
+.sk{background:var(--gold-pale);border:1px solid var(--gold-border);color:#92400e;padding:.35rem .9rem;border-radius:4px;font-size:.78rem;font-weight:700;}
+
+/* CONTACT */
+#contact{background:var(--cream2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.45fr;gap:5rem;margin-top:3rem;align-items:start;}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:2.5rem;}}
+.contact-info h3{font-size:1.75rem;font-weight:900;color:var(--ink);margin-bottom:.75rem;line-height:1.2;letter-spacing:-.02em;}
+.contact-info p{color:var(--mid);line-height:1.85;font-weight:300;margin-bottom:2rem;font-size:.95rem;}
+.c-item{display:flex;align-items:center;gap:.875rem;padding:.875rem 0;border-bottom:1px solid var(--border);}
+.c-item:last-child{border:none;}
+.c-ico{width:38px;height:38px;background:var(--gold-pale);border:1px solid var(--gold-border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0;}
+.c-txt strong{display:block;font-size:.82rem;font-weight:700;color:var(--ink);}
+.c-txt span{font-size:.82rem;color:var(--mid);}
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:2.5rem;box-shadow:0 8px 40px rgba(0,0,0,.06);}
+.fg{margin-bottom:1.1rem;}
+.fg label{display:block;font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem;}
+.fg input,.fg select,.fg textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:.875rem 1rem;font-family:'Inter',sans-serif;font-size:.9rem;color:var(--ink);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--amber);}
+.fg textarea{height:120px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:480px){.form-row{grid-template-columns:1fr;}}
+.sub-btn{width:100%;background:var(--ink);color:#fff;border:none;padding:1.1rem;border-radius:6px;font-size:.9rem;font-weight:800;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:.6rem;}
+.sub-btn:hover{background:var(--ink2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(13,17,23,.2);}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid rgba(245,158,11,.08);padding:2.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.f-logo{display:flex;align-items:center;gap:.625rem;}
+.f-logo img{height:26px;width:auto;opacity:.85;}
+.f-logo-text{font-size:.9rem;font-weight:900;color:var(--white);}
+.f-logo-text span{color:var(--amber);}
+.f-links{display:flex;gap:2rem;}
+.f-links a{color:rgba(255,255,255,.2);font-size:.78rem;text-decoration:none;transition:color .2s;}
+.f-links a:hover{color:var(--amber);}
+.f-ai-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.15);color:rgba(255,255,255,.3);padding:.3rem .75rem;border-radius:20px;font-size:.65rem;font-weight:700;letter-spacing:.08em;}
+.f-ai-badge i{color:var(--amber);}
+footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
+
+@media(max-width:768px){
+  .hamburger{display:block;}
+  .nav-links{display:none;position:fixed;inset:0;background:var(--ink);flex-direction:column;align-items:center;justify-content:center;gap:2rem;z-index:999;}
+  .nav-links.open{display:flex;}
+  nav{padding:.875rem 1.5rem;}
+  .sec{padding:5rem 1.5rem;}
+  footer{flex-direction:column;text-align:center;}
+}
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- AI STRIP -->
+<div class="ai-strip">
+  <span class="ai-pill">✦ AI-Powered</span>
+  <span>Systems designed and built using cutting-edge AI tools — <span>faster delivery, smarter builds, better results</span></span>
+  <span class="ai-pill">New York</span>
+</div>
+
+<nav>
+  <div class="logo">
+    <img src="logo.png" alt="DataClearPath Logo"/>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('nl').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+  <ul class="nav-links" id="nl">
+    <li><a href="#recognize" onclick="document.getElementById('nl').classList.remove('open')">The Problem</a></li>
+    <li><a href="#cost" onclick="document.getElementById('nl').classList.remove('open')">The Cost</a></li>
+    <li><a href="#portfolio" onclick="document.getElementById('nl').classList.remove('open')">Our Work</a></li>
+    <li><a href="#pricing" onclick="document.getElementById('nl').classList.remove('open')">Pricing</a></li>
+    <li><a href="#contact" onclick="document.getElementById('nl').classList.remove('open')" class="nav-cta">Free Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="home">
+  <div class="hero-left">
+    <div class="chaos-bg"></div>
+    <div class="chaos-overlay"></div>
+    <div class="hero-left-content">
+      <div class="chaos-label"><i class="fas fa-exclamation-triangle"></i> Still Running on Paper?</div>
+      <h2>This Is What Your<br/><span>Business Looks Like</span><br/>Right Now.</h2>
+      <div class="chaos-items">
+        <div class="ci"><i class="fas fa-times-circle"></i> Binders no one can find</div>
+        <div class="ci"><i class="fas fa-times-circle"></i> Writing the same thing down twice</div>
+        <div class="ci"><i class="fas fa-times-circle"></i> Reports that take half a day to make</div>
+        <div class="ci"><i class="fas fa-times-circle"></i> Spreadsheets only one person understands</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-divider"><div class="divider-arrow"><i class="fas fa-arrow-right"></i></div></div>
+  <div class="hero-right">
+    <div class="typewriter-label">What we fix every day</div>
+    <div class="typewriter-line"><span id="tw"></span><span class="cursor"></span></div>
+    <h1>Your Business<br/>Can Run<br/><em>Smarter.</em></h1>
+    <p class="hero-sub">We build the database, dashboard, or mobile app that replaces your paper system — so you can run your business instead of being buried by it.</p>
+    <div class="cost-ticker">
+      <div>
+        <div class="ticker-label">💸 Estimated hrs lost to paper this week</div>
+        <div class="ticker-amount" id="ticker">0.0 hrs</div>
+        <div class="ticker-sub">Across a 3-person team · Resets Sunday</div>
+      </div>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#recognize" class="btn-amber"><i class="fas fa-arrow-down"></i> See If This Is You</a>
+      <a href="#contact" class="btn-outline">Free 30-Min Call</a>
+    </div>
+  </div>
+</div>
+
+<div class="proof-bar">
+  <div class="proof-item"><i class="fas fa-database"></i><span><span class="proof-num">3</span> Live Systems Built</span></div>
+  <div class="proof-item"><i class="fas fa-file-alt"></i><span><span class="proof-num">500+</span> Paper Records Rescued</span></div>
+  <div class="proof-item"><i class="fas fa-mobile-alt"></i><span><span class="proof-num">3</span> Mobile Apps Shipped</span></div>
+  <div class="proof-item"><i class="fas fa-robot"></i><span>AI-Powered Builds</span></div>
+  <div class="proof-item"><i class="fas fa-handshake"></i><span>Free First Conversation</span></div>
+</div>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="m-item">Paper to Digital</span><span class="m-item">AI-Powered Builds</span><span class="m-item">Database Design</span><span class="m-item">Web Dashboards</span><span class="m-item">Mobile Apps</span><span class="m-item">Data Migration</span><span class="m-item">Digital Forms</span><span class="m-item">Automatic Reports</span><span class="m-item">Staff Logins</span>
+    <span class="m-item">Paper to Digital</span><span class="m-item">AI-Powered Builds</span><span class="m-item">Database Design</span><span class="m-item">Web Dashboards</span><span class="m-item">Mobile Apps</span><span class="m-item">Data Migration</span><span class="m-item">Digital Forms</span><span class="m-item">Automatic Reports</span><span class="m-item">Staff Logins</span>
+  </div>
+</div>
+
+<!-- RECOGNIZE -->
+<section id="recognize" class="sec">
+  <div class="sec-inner">
+    <div class="s-tag fade-up">Sound Familiar?</div>
+    <h2 class="s-h fade-up">If Your Business Runs on Paper,<br/>You're Losing More Than You Know.</h2>
+    <div class="rule"></div>
+    <div class="recog-grid">
+      <div class="fade-up">
+        <div class="chaos-photo-wrap">
+          <img src="chaos-desk.png" alt="Paper chaos"/>
+          <div class="chaos-caption"><p><i class="fas fa-exclamation-circle"></i> This is still how most small businesses run every single day.</p></div>
+        </div>
+      </div>
+      <div>
+        <p class="recog-intro fade-up">Every day, business owners just like you spend hours on tasks a well-built system would handle in seconds. Count how many of these you recognize.</p>
+        <div class="pain-stack">
+          <div class="pain-row fade-up"><div class="pain-emoji">📁</div><div class="pain-text"><h4>"I know it's in here somewhere…"</h4><p>Finding one past record takes 10–20 minutes. Sometimes you give up and start over from scratch. Every single week.</p></div></div>
+          <div class="pain-row fade-up"><div class="pain-emoji">📋</div><div class="pain-text"><h4>You write the same thing down twice</h4><p>Paper forms filled in the field, then re-typed at the office. Same data, entered twice, with errors both times.</p></div></div>
+          <div class="pain-row fade-up"><div class="pain-emoji">📊</div><div class="pain-text"><h4>"The spreadsheet only Sarah understands"</h4><p>One person built it. Nobody else can touch it. When she's out — everything stops.</p></div></div>
+          <div class="pain-row fade-up"><div class="pain-emoji">📞</div><div class="pain-text"><h4>Putting customers on hold to dig through papers</h4><p>Someone calls about their job or order. You put them on hold. It shouldn't take this long.</p></div></div>
+          <div class="pain-row fade-up"><div class="pain-emoji">📈</div><div class="pain-text"><h4>You can't answer basic questions about your business</h4><p>"How many jobs last month?" You'd need to count by hand. You should know this in 10 seconds.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision" class="sec">
+  <div class="sec-inner">
+    <div class="s-tag fade-up" style="color:var(--amber);">What's Possible</div>
+    <h2 class="s-h s-h-w fade-up">Imagine Starting Monday With<br/>Everything Already in Order.</h2>
+    <div class="rule fade-up"></div>
+    <div class="vision-grid">
+      <div class="digital-photo fade-up"><img src="digital-relief.png" alt="Clean organized digital workspace"/></div>
+      <div class="v-list">
+        <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-search"></i></div><div class="v-body"><h4>Find anything in under 10 seconds</h4><p>Type a name, date, or number. Results appear instantly. No binders, no guessing.</p></div></div>
+        <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-mobile-alt"></i></div><div class="v-body"><h4>Your team enters data on their phone</h4><p>Forms filled in the field flow straight into your system. No re-entering. No lost paperwork.</p></div></div>
+        <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-chart-bar"></i></div><div class="v-body"><h4>See your whole business on one screen</h4><p>Live numbers — jobs, revenue, what's pending — updated automatically.</p></div></div>
+        <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-users"></i></div><div class="v-body"><h4>Your whole team on the same page</h4><p>Everyone logs in and sees the same real-time information. Always.</p></div></div>
+        <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-shield-alt"></i></div><div class="v-body"><h4>Records safe, backed up, always there</h4><p>No fire risk. No flood. Backed up daily — accessible from any device, forever.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<div class="ai-section">
+  <div class="ai-inner">
+    <div class="ai-badge-big fade-up"><i class="fas fa-robot"></i> AI-Powered Development</div>
+    <h2 class="fade-up">We Use <em>AI Tools</em> to Build Faster<br/>and Charge You Less.</h2>
+    <p class="fade-up">AI doesn't replace the human thinking that goes into understanding your business. But it does mean we can build in days what used to take weeks — and pass those savings directly to you.</p>
+    <div class="ai-cards fade-up">
+      <div class="ai-card"><i class="fas fa-bolt"></i><h4>Built in Days, Not Months</h4><p>AI-assisted development means your system is live faster. Most projects done in 3–5 weeks instead of 3–5 months.</p></div>
+      <div class="ai-card"><i class="fas fa-dollar-sign"></i><h4>Lower Cost, Same Quality</h4><p>We use AI tools to work smarter. That means our $1,200 Builder package delivers what agencies charge $8,000 for.</p></div>
+      <div class="ai-card"><i class="fas fa-brain"></i><h4>Smarter Systems From Day One</h4><p>AI helps us catch edge cases, optimize your data structure, and build systems that scale as your business grows.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- COST -->
+<section id="cost" class="sec">
+  <div class="sec-inner">
+    <div class="s-tag fade-up">The Real Numbers</div>
+    <h2 class="s-h fade-up">Paper Isn't Free.<br/>It's Costing You Every Day.</h2>
+    <div class="rule"></div>
+    <img src="cost-savings.png" alt="Cost comparison" class="cost-img fade-up"/>
+    <div class="cost-table fade-up">
+      <div class="ct-head"><div class="cth">The Situation</div><div class="cth">Paper / Manual</div><div class="cth gold">Digital System</div></div>
+      <div class="c-row"><div class="c-sit">Finding one old record</div><div class="c-bad">⏱ 10–20 minutes</div><div class="c-good">✓ Under 10 seconds</div></div>
+      <div class="c-row"><div class="c-sit">Data entry error rate</div><div class="c-bad">1 in every 25 entries wrong</div><div class="c-good">✓ Near zero</div></div>
+      <div class="c-row"><div class="c-sit">Fixing one mistake</div><div class="c-bad">$50–$150 per error</div><div class="c-good">✓ $0</div></div>
+      <div class="c-row"><div class="c-sit">Weekly admin per staff member</div><div class="c-bad">5–10 hrs on paperwork</div><div class="c-good">✓ Under 1 hour</div></div>
+      <div class="c-row"><div class="c-sit">Monthly report</div><div class="c-bad">Half a day to compile</div><div class="c-good">✓ 30 seconds, automatic</div></div>
+      <div class="c-row"><div class="c-sit">Hiring a data entry person</div><div class="c-bad">$18,000–$35,000/year</div><div class="c-good">✓ Our system = $1,200 once</div></div>
+    </div>
+    <div class="wow-box fade-up">
+      <div class="wb-text"><h3>A part-time data entry employee costs $18,000 a year. Our Builder package is $1,200 — one time.</h3><p>Pays for itself in the first month. Every month after that is pure savings — permanently.</p></div>
+      <div class="wb-num"><div class="wb-big">$0</div><div class="wb-lbl">Ongoing cost after setup</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how" class="sec">
+  <div class="sec-inner">
+    <div class="s-tag fade-up">The Process</div>
+    <h2 class="s-h fade-up">Here's Exactly What Happens<br/>When You Work With Us</h2>
+    <div class="rule"></div>
+    <div class="steps-row fade-up">
+      <div class="step"><div class="step-n">01</div><h3>We Listen First</h3><p>Tell us how your business works in plain English. No tech knowledge required. We figure out what you need.</p><span class="step-badge">Week 1</span></div>
+      <div class="step"><div class="step-n">02</div><h3>We Design It</h3><p>We sketch out exactly what we'll build and show you before writing one line of code. You approve everything first.</p><span class="step-badge">Week 1–2</span></div>
+      <div class="step"><div class="step-n">03</div><h3>We Build It (with AI)</h3><p>Using AI-assisted tools, we build your system faster than traditional methods — without cutting corners on quality.</p><span class="step-badge">Week 2–4</span></div>
+      <div class="step"><div class="step-n">04</div><h3>You Go Live</h3><p>We train your team, go live, and stay available for 30 days after launch — no extra charge.</p><span class="step-badge">Week 4–5</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="sec" style="background:var(--cream2);">
+  <div class="sec-inner">
+    <div class="s-tag fade-up">Real Work</div>
+    <h2 class="s-h fade-up">Real Businesses.<br/>Real Transformations.</h2>
+    <div class="rule"></div>
+    <div class="port-list">
+      <div class="port-item fade-up">
+        <div class="port-img"><img src="port-fleet.png" alt="Fleet management dashboard"/></div>
+        <div>
+          <div class="port-industry">🚐 Nonprofit Transportation · Brooklyn, NY</div>
+          <h3>From Paper Clipboards to a Live Fleet System</h3>
+          <div class="port-prob"><div class="pb-lbl r">❌ Before</div><p>Drivers turned in handwritten trip logs at end of each shift. An office worker re-typed every record manually. Nobody knew in real time where drivers were.</p></div>
+          <div class="port-sol"><div class="pb-lbl g">✓ After</div><p>Full database, live web dashboard, and a driver mobile app. Data flows straight into the system. No re-entry. No paper. Nothing lost.</p></div>
+          <div class="port-tags"><span class="pt">Database</span><span class="pt">Web Dashboard</span><span class="pt">Driver Mobile App</span><span class="pt">500+ Records Migrated</span></div>
+          <div class="port-result"><i class="fas fa-check-circle"></i> Zero clipboards. Fully live. Team trained day one.</div>
+        </div>
+      </div>
+      <div class="port-divider fade-up"></div>
+      <div class="port-item rev fade-up">
+        <div>
+          <div class="port-industry">⚡ Technology Client · Remote</div>
+          <h3>A Real-Time System Connecting Four Services at Once</h3>
+          <div class="port-prob"><div class="pb-lbl r">❌ Before</div><p>Needed to control desktop software from an iPhone — in real time, from anywhere. No off-the-shelf product existed. Every workaround broke.</p></div>
+          <div class="port-sol"><div class="pb-lbl g">✓ After</div><p>Custom architecture: iPhone app, cloud relay server, desktop extension, and local bridge agent — all communicating live. Command sent, action taken in under a second.</p></div>
+          <div class="port-tags"><span class="pt">iPhone App</span><span class="pt">Cloud Server</span><span class="pt">Desktop Extension</span><span class="pt">Real-Time Sync</span></div>
+          <div class="port-result"><i class="fas fa-check-circle"></i> Live 24/7. Works from anywhere in the world.</div>
+        </div>
+        <div class="port-img"><img src="port-realtime.png" alt="Real-time control system"/></div>
+      </div>
+      <div class="port-divider fade-up"></div>
+      <div class="port-item fade-up">
+        <div class="port-img"><img src="port-commerce.png" alt="E-commerce platform"/></div>
+        <div>
+          <div class="port-industry">🛒 Retail Business · New York</div>
+          <h3>One Platform to Replace Three Broken Spreadsheets</h3>
+          <div class="port-prob"><div class="pb-lbl r">❌ Before</div><p>Orders, inventory, and customers lived in three separate spreadsheets — always out of sync. Orders got missed. Nobody trusted the numbers.</p></div>
+          <div class="port-sol"><div class="pb-lbl g">✓ After</div><p>One unified platform. Orders, inventory, customer history, and automatic reports — all live, all in one place. Spreadsheet chaos gone for good.</p></div>
+          <div class="port-tags"><span class="pt">Order Management</span><span class="pt">Live Inventory</span><span class="pt">Customer Records</span><span class="pt">Auto Reports</span></div>
+          <div class="port-result"><i class="fas fa-check-circle"></i> One system. Whole team. Done.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="sec">
+  <div class="sec-inner">
+    <div class="s-tag fade-up" style="color:var(--amber);">Investment</div>
+    <h2 class="s-h s-h-w fade-up">One Price. No Surprises.<br/>You Own Everything We Build.</h2>
+    <div class="rule fade-up"></div>
+    <div class="price-row fade-up">
+      <div class="p-col">
+        <div class="p-tier">Starter</div>
+        <div class="p-price">$299 <small>/ project</small></div>
+        <p class="p-who">Your records are a mess. Let's clean them up so you can actually use them.</p>
+        <ul class="p-list">
+          <li><i class="fas fa-check"></i>Document cleanup & reorganization</li>
+          <li><i class="fas fa-check"></i>Excel workbook redesign</li>
+          <li><i class="fas fa-check"></i>Data cleaned & standardized</li>
+          <li><i class="fas fa-check"></i>Delivered in 1 week</li>
+        </ul>
+        <a href="#contact" class="p-btn-line">Get Started</a>
+      </div>
+      <div class="p-col feat">
+        <div class="p-pip">Most Popular</div>
+        <div class="p-tier">Builder</div>
+        <div class="p-price">$1,200 <small>/ project</small></div>
+        <p class="p-who">A real database and web dashboard your whole team uses every day.</p>
+        <ul class="p-list">
+          <li><i class="fas fa-check"></i>Full database design & setup</li>
+          <li><i class="fas fa-check"></i>Web dashboard for your whole team</li>
+          <li><i class="fas fa-check"></i>Existing records migrated in</li>
+          <li><i class="fas fa-check"></i>Staff logins & role-based access</li>
+          <li><i class="fas fa-check"></i>30 days support after launch</li>
+        </ul>
+        <a href="#contact" class="p-btn-amber">Get Started</a>
+      </div>
+      <div class="p-col">
+        <div class="p-tier">Full System</div>
+        <div class="p-price">$4,500 <small>+</small></div>
+        <p class="p-who">Database, web platform, AND a mobile app for staff or customers in the field.</p>
+        <ul class="p-list">
+          <li><i class="fas fa-check"></i>Everything in Builder</li>
+          <li><i class="fas fa-check"></i>Native iPhone & Android app</li>
+          <li><i class="fas fa-check"></i>Field forms & mobile data entry</li>
+          <li><i class="fas fa-check"></i>App Store submission included</li>
+        </ul>
+        <a href="#contact" class="p-btn-line">Get Started</a>
+      </div>
+    </div>
+    <div class="vs-wrap fade-up">
+      <div class="vs-head"><div class="vs-th">Compare</div><div class="vs-th">Hiring Staff</div><div class="vs-th g">DataClearPath</div></div>
+      <div class="vs-row"><div class="vs-label">Annual Cost</div><div class="vs-no">$18K–$35K per year</div><div class="vs-yes">$0 after setup</div></div>
+      <div class="vs-row"><div class="vs-label">Time to Start</div><div class="vs-no">4–6 weeks to hire & train</div><div class="vs-yes">Live in 3–5 weeks</div></div>
+      <div class="vs-row"><div class="vs-label">When They Leave</div><div class="vs-no">Start over</div><div class="vs-yes">System stays forever</div></div>
+      <div class="vs-row"><div class="vs-label">Scales With Growth</div><div class="vs-no">Hire more people</div><div class="vs-yes">System grows with you</div></div>
+    </div>
+    <p class="p-note fade-up">Monthly maintenance from <strong style="color:var(--amber);">$200/month</strong> — we keep it running, updated & backed up. <a href="#contact">Ask us →</a></p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-inner">
+    <div class="s-tag fade-up">Who We Are</div>
+    <h2 class="s-h fade-up">We Understand Your Business<br/>Before We Touch Any Technology.</h2>
+    <div class="rule"></div>
+    <div class="about-grid">
+      <div class="about-card fade-up">
+        <div class="ac-stats">
+          <div><div class="ac-num">3</div><div class="ac-lbl">Live systems running</div></div>
+          <div><div class="ac-num">500+</div><div class="ac-lbl">Records rescued</div></div>
+          <div><div class="ac-num">3</div><div class="ac-lbl">Mobile apps shipped</div></div>
+          <div><div class="ac-num">0</div><div class="ac-lbl">Projects abandoned</div></div>
+        </div>
+        <div class="ac-quote">"The best system is the one your team actually uses every single day. That's all we build."</div>
+      </div>
+      <div class="fade-up">
+        <div class="about-text">
+          <p>I'm Akiva, founder of DataClearPath. I don't have a computer science degree. What I have is a track record of walking into businesses drowning in paper — and leaving them a system that actually works.</p>
+          <p><strong>I learned by building real things for real businesses.</strong> Every system I've built is live and being used right now. I use the latest AI tools to build faster and smarter — which means you get more for less.</p>
+          <p>You don't need a giant IT company. You need one person who listens, understands your operation, and builds something your team will actually use — without needing a manual to figure it out.</p>
+          <div class="sk-row">
+            <span class="sk">Database Design</span><span class="sk">Web Dashboards</span><span class="sk">Mobile Apps</span>
+            <span class="sk">Data Migration</span><span class="sk">Digital Forms</span><span class="sk">AI-Powered Builds</span>
+            <span class="sk">Auto Reports</span><span class="sk">Cloud Deployment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="sec-inner">
+    <div class="s-tag fade-up">Get In Touch</div>
+    <h2 class="s-h fade-up">Ready to Leave the Paper Behind?</h2>
+    <div class="rule"></div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <div class="contact-info">
+          <h3>Start With a Free Conversation</h3>
+          <p>Tell us what you're still doing on paper. No tech knowledge needed — just describe it like you're talking to a friend. We'll take it from there.</p>
+          <div class="c-item"><div class="c-ico"><i class="fas fa-envelope"></i></div><div class="c-txt"><strong>Email</strong><span>hello@dataclearpath.com</span></div></div>
+          <div class="c-item"><div class="c-ico"><i class="fas fa-globe"></i></div><div class="c-txt"><strong>Website</strong><span>www.dataclearpath.com</span></div></div>
+          <div class="c-item"><div class="c-ico"><i class="fas fa-map-marker-alt"></i></div><div class="c-txt"><strong>Location</strong><span>New York, NY — remote friendly everywhere</span></div></div>
+          <div class="c-item"><div class="c-ico"><i class="fas fa-clock"></i></div><div class="c-txt"><strong>Response Time</strong><span>Within 24 hours — usually same day</span></div></div>
+        </div>
+      </div>
+      <div class="form-card fade-up">
+        <form onsubmit="event.preventDefault();this.innerHTML='<div style=\'text-align:center;padding:3rem;\'><div style=\'font-size:2.5rem;margin-bottom:1rem;\'>✅</div><h3 style=\'color:#0d1117;font-size:1.25rem;font-weight:800;\'>Message Sent!</h3><p style=\'color:#6b7280;margin-top:.5rem;\'>We\'ll be in touch within 24 hours.</p></div>'">
+          <div class="form-row">
+            <div class="fg"><label>First Name</label><input type="text" placeholder="John" required/></div>
+            <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required/></div>
+          </div>
+          <div class="fg"><label>Email Address</label><input type="email" placeholder="john@yourbusiness.com" required/></div>
+          <div class="fg"><label>What Kind of Business?</label>
+            <select required><option value="">Select your industry</option>
+              <option>Transportation & Logistics</option><option>Healthcare & Medical</option>
+              <option>Retail & E-Commerce</option><option>Construction & Trades</option>
+              <option>Nonprofit Organization</option><option>Restaurant & Food</option>
+              <option>Home Services & Repair</option><option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>What Are You Still Doing on Paper?</label>
+            <textarea placeholder="Just describe it in plain English. We'll take it from there." required></textarea>
+          </div>
+          <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> Send — We'll Respond Today</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">
+    <img src="logo.png" alt="DataClearPath"/>
+  </div>
+  <div class="f-links">
+    <a href="#recognize">The Problem</a>
+    <a href="#portfolio">Our Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="f-ai-badge"><i class="fas fa-robot"></i> Built with AI · Delivered by humans</div>
+  <p>© 2026 DataClearPath · New York, NY · <a href="mailto:hello@dataclearpath.com" style="color:rgba(255,255,255,.3);text-decoration:none;">hello@dataclearpath.com</a></p>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.07});
+document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+const phrases=["\"I know it's in here somewhere…\"","Writing the same thing down twice.","Spreadsheets only Sarah understands.","Reports that take half a day to make.","Putting customers on hold to dig through papers."];
+let pi=0,ci2=0,del=false;
+const tw=document.getElementById('tw');
+function type(){const p=phrases[pi];if(!del){tw.textContent=p.slice(0,++ci2);if(ci2===p.length){del=true;setTimeout(type,1800);return;}}else{tw.textContent=p.slice(0,--ci2);if(ci2===0){del=false;pi=(pi+1)%phrases.length;}}setTimeout(type,del?40:65);}
+type();
+function updateTicker(){const now=new Date(),monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));monday.setHours(0,0,0,0);const hrs=Math.min((now-monday)/3600000,40)/40*18;document.getElementById('ticker').textContent=hrs.toFixed(1)+' hrs';}
+updateTicker();setInterval(updateTicker,30000);
+</script>
+</body>
+</html>
