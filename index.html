@@ -18,7 +18,8 @@
   --border:#e5ddd0;--mid:#6b7280;--white:#fff;
   --gold-pale:rgba(245,158,11,.1);--gold-border:rgba(245,158,11,.25);
 }
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+body.nav-open{overflow:hidden;}
 body{font-family:'Inter',sans-serif;color:var(--ink);overflow-x:hidden;background:var(--cream);}
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-thumb{background:var(--amber);border-radius:2px;}
@@ -328,13 +329,13 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
   <div class="logo">
     <img src="logo.png" alt="DataClearPath Logo"/>
   </div>
-  <button class="hamburger" onclick="document.getElementById('nl').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+  <button class="hamburger" id="hb" aria-label="Menu"><i class="fas fa-bars"></i></button>
   <ul class="nav-links" id="nl">
-    <li><a href="#recognize" onclick="document.getElementById('nl').classList.remove('open')">The Problem</a></li>
-    <li><a href="#cost" onclick="document.getElementById('nl').classList.remove('open')">The Cost</a></li>
-    <li><a href="#portfolio" onclick="document.getElementById('nl').classList.remove('open')">Our Work</a></li>
-    <li><a href="#pricing" onclick="document.getElementById('nl').classList.remove('open')">Pricing</a></li>
-    <li><a href="#contact" onclick="document.getElementById('nl').classList.remove('open')" class="nav-cta">Free Consultation</a></li>
+    <li><a href="#recognize">The Problem</a></li>
+    <li><a href="#cost">The Cost</a></li>
+    <li><a href="#portfolio">Our Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
   </ul>
 </nav>
 
@@ -664,4 +665,92 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
       <div class="form-card fade-up">
         <form id="contactForm" action="https://formspree.io/f/xwvjjyag" method="POST">
           <div class="form-row">
-            <div class="fg"><label>First Name</label><input type="text" name="first-name" placehold
+            <div class="fg"><label>First Name</label><input type="text" name="first-name" placeholder="John" required/></div>
+            <div class="fg"><label>Last Name</label><input type="text" name="last-name" placeholder="Smith" required/></div>
+          </div>
+          <div class="fg"><label>Email Address</label><input type="email" name="email" placeholder="john@yourbusiness.com" required/></div>
+          <div class="fg"><label>What Kind of Business?</label>
+            <select name="business-type" required><option value="">Select your industry</option>
+              <option>Transportation & Logistics</option><option>Healthcare & Medical</option>
+              <option>Retail & E-Commerce</option><option>Construction & Trades</option>
+              <option>Nonprofit Organization</option><option>Restaurant & Food</option>
+              <option>Home Services & Repair</option><option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>What Are You Still Doing on Paper?</label>
+            <textarea name="message" placeholder="Just describe it in plain English. We'll take it from there." required></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New DataClearPath inquiry from the website"/>
+          <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> Send — We'll Respond Today</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">
+    <img src="logo.png" alt="DataClearPath"/>
+  </div>
+  <div class="f-links">
+    <a href="#recognize">The Problem</a>
+    <a href="#portfolio">Our Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="f-ai-badge"><i class="fas fa-robot"></i> Built with AI · Delivered by humans</div>
+  <p>© 2026 DataClearPath · New York, NY · <a href="mailto:hello@dataclearpath.com" style="color:rgba(255,255,255,.3);text-decoration:none;">hello@dataclearpath.com</a> · <a href="tel:+13474670372" style="color:rgba(255,255,255,.3);text-decoration:none;">(347) 467-0372</a></p>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.07});
+document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+const phrases=["\"I know it's in here somewhere…\"","Writing the same thing down twice.","Spreadsheets only Sarah understands.","Reports that take half a day to make.","Putting customers on hold to dig through papers."];
+let pi=0,ci2=0,del=false;
+const tw=document.getElementById('tw');
+function type(){const p=phrases[pi];if(!del){tw.textContent=p.slice(0,++ci2);if(ci2===p.length){del=true;setTimeout(type,1800);return;}}else{tw.textContent=p.slice(0,--ci2);if(ci2===0){del=false;pi=(pi+1)%phrases.length;}}setTimeout(type,del?40:65);}
+type();
+function updateTicker(){const now=new Date(),monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));monday.setHours(0,0,0,0);const hrs=Math.min((now-monday)/3600000,40)/40*18;document.getElementById('ticker').textContent=hrs.toFixed(1)+' hrs';}
+updateTicker();setInterval(updateTicker,30000);
+// Contact form -> Formspree (submits in the background so the success message shows inline)
+const cf=document.getElementById('contactForm');
+if(cf){cf.addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=cf.querySelector('button[type=submit]');const orig=btn.innerHTML;
+  btn.disabled=true;btn.innerHTML='<i class="fas fa-circle-notch fa-spin"></i> Sending…';
+  try{
+    const res=await fetch(cf.action,{method:'POST',body:new FormData(cf),headers:{'Accept':'application/json'}});
+    if(res.ok){
+      cf.innerHTML='<div style="text-align:center;padding:3rem;"><div style="font-size:2.5rem;margin-bottom:1rem;">✅</div><h3 style="color:#0d1117;font-size:1.25rem;font-weight:800;">Message Sent!</h3><p style="color:#6b7280;margin-top:.5rem;">We\'ll be in touch within 24 hours.</p></div>';
+    }else{
+      btn.disabled=false;btn.innerHTML=orig;
+      alert('Sorry, something went wrong sending your message. Please email hello@dataclearpath.com or call (347) 467-0372.');
+    }
+  }catch(err){
+    btn.disabled=false;btn.innerHTML=orig;
+    alert('Sorry, something went wrong sending your message. Please email hello@dataclearpath.com or call (347) 467-0372.');
+  }
+});}
+// Mobile nav: open/close the menu and scroll smoothly WITHOUT doing both at once (fixes iOS freeze)
+(function(){
+  var navList=document.getElementById('nl');
+  var burger=document.getElementById('hb');
+  function closeMenu(){navList.classList.remove('open');document.body.classList.remove('nav-open');}
+  if(burger){burger.addEventListener('click',function(){
+    var open=navList.classList.toggle('open');
+    document.body.classList.toggle('nav-open',open);
+  });}
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click',function(e){
+      var id=link.getAttribute('href');
+      closeMenu();
+      if(id&&id.charAt(0)==='#'){
+        var target=document.querySelector(id);
+        if(target){e.preventDefault();setTimeout(function(){target.scrollIntoView({behavior:'smooth'});},160);}
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
