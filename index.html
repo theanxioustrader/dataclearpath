@@ -312,8 +312,9 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
   .sec{padding:5rem 1.5rem;}
   footer{flex-direction:column;text-align:center;}
 }
-.fade-up{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
-.fade-up.visible{opacity:1;transform:translateY(0);}
+.fade-up{transition:opacity .7s ease,transform .7s ease;}
+.js-anim .fade-up{opacity:0;transform:translateY(22px);}
+.js-anim .fade-up.visible{opacity:1;transform:translateY(0);}
 </style>
 </head>
 <body>
@@ -703,8 +704,21 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
 </footer>
 
 <script>
-const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.07});
-document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+// Reveal-on-scroll, made bulletproof: content shows even if this ever fails.
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.fade-up'));
+  function reveal(){for(var i=0;i<els.length;i++){var el=els[i];if(!el.classList.contains('visible')){var r=el.getBoundingClientRect();if(r.top<window.innerHeight*0.92){el.classList.add('visible');}}}}
+  try{
+    document.documentElement.classList.add('js-anim');
+    reveal();
+    window.addEventListener('scroll',reveal,{passive:true});
+    window.addEventListener('resize',reveal);
+    window.addEventListener('load',reveal);
+    setTimeout(reveal,300);setTimeout(reveal,1200);
+  }catch(e){
+    for(var j=0;j<els.length;j++){els[j].classList.add('visible');}
+  }
+})();
 const phrases=["\"I know it's in here somewhere…\"","Writing the same thing down twice.","Spreadsheets only Sarah understands.","Reports that take half a day to make.","Putting customers on hold to dig through papers."];
 let pi=0,ci2=0,del=false;
 const tw=document.getElementById('tw');
