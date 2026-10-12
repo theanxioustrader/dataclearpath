@@ -334,7 +334,11 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
 .m-item{color:rgba(255,255,255,.55);}
 .vs-th.g,.cth.gold{color:var(--amber);}
 .c-good,.pb-lbl.g,.port-result{color:#166534;}
-.hamburger{position:relative;z-index:1001;} /* stays above the open mobile menu so it can close it */ /* dark green for text on light backgrounds (6.29:1); #16a34a stays for icons */
+.hamburger{position:relative;z-index:1001;} /* stays above the open mobile menu so it can close it */
+/* small phones (320-480px): no sideways overflow */
+.f-links{flex-wrap:wrap;justify-content:center;row-gap:.75rem;}
+.f-ai-badge{max-width:100%;white-space:normal;text-align:center;}
+@media(max-width:480px){.wow-box{padding:1.75rem 1.25rem;}.wb-big{font-size:3.25rem;}footer{padding:2rem 1.25rem;}footer p{overflow-wrap:anywhere;}} /* dark green for text on light backgrounds (6.29:1); #16a34a stays for icons */
 .f-links a:hover,.btn-outline:hover,.p-btn-line:hover{color:var(--amber);}
 picture{display:contents;}
 .chaos-photo-wrap img,.digital-photo img,.cost-img{height:auto;}
