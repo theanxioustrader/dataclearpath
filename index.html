@@ -333,7 +333,8 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
 .start-box .sb-sub{color:rgba(255,255,255,.72);}
 .m-item{color:rgba(255,255,255,.55);}
 .vs-th.g,.cth.gold{color:var(--amber);}
-.c-good,.pb-lbl.g,.port-result{color:#166534;} /* dark green for text on light backgrounds (6.29:1); #16a34a stays for icons */
+.c-good,.pb-lbl.g,.port-result{color:#166534;}
+.hamburger{position:relative;z-index:1001;} /* stays above the open mobile menu so it can close it */ /* dark green for text on light backgrounds (6.29:1); #16a34a stays for icons */
 .f-links a:hover,.btn-outline:hover,.p-btn-line:hover{color:var(--amber);}
 picture{display:contents;}
 .chaos-photo-wrap img,.digital-photo img,.cost-img{height:auto;}
@@ -354,7 +355,7 @@ picture{display:contents;}
   <div class="logo">
     <img src="logo.png" alt="DataClearPath Logo" width="910" height="225"/>
   </div>
-  <button class="hamburger" id="hb" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  <button class="hamburger" id="hb" aria-label="Open menu" aria-expanded="false" aria-controls="nl"><i class="fas fa-bars"></i></button>
   <ul class="nav-links" id="nl">
     <li><a href="#recognize">The Problem</a></li>
     <li><a href="#cost">The Cost</a></li>
@@ -758,11 +759,14 @@ if(cf){cf.addEventListener('submit',async function(e){
 (function(){
   var navList=document.getElementById('nl');
   var burger=document.getElementById('hb');
-  function closeMenu(){navList.classList.remove('open');document.body.classList.remove('nav-open');}
-  if(burger){burger.addEventListener('click',function(){
-    var open=navList.classList.toggle('open');
-    document.body.classList.toggle('nav-open',open);
-  });}
+  function setMenu(open){
+    navList.classList.toggle('open',open);document.body.classList.toggle('nav-open',open);
+    if(burger){burger.setAttribute('aria-expanded',open?'true':'false');burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+      burger.innerHTML=open?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';}
+  }
+  function closeMenu(){setMenu(false);}
+  if(burger){burger.addEventListener('click',function(){setMenu(!navList.classList.contains('open'));});}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&navList.classList.contains('open')){closeMenu();if(burger)burger.focus();}});
   document.querySelectorAll('.nav-links a').forEach(function(link){
     link.addEventListener('click',function(e){
       var id=link.getAttribute('href');
