@@ -7,7 +7,12 @@
 <meta name="description" content="DataClearPath builds custom databases, dashboards, and mobile apps for small businesses still running on paper. AI-powered builds. You own everything. New York."/>
 <meta property="og:title" content="DataClearPath | From Paper to Digital"/>
 <meta property="og:description" content="We replace your paper systems with digital ones — built specifically for how your business works."/>
-<meta property="og:url" content="https://www.dataclearpath.com"/>
+<meta property="og:url" content="https://dataclearpath.com/"/>
+<link rel="canonical" href="https://dataclearpath.com/"/>
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"/>
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<meta name="theme-color" content="#0d1117"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
@@ -25,7 +30,7 @@ body{font-family:'Inter',sans-serif;color:var(--ink);overflow-x:hidden;backgroun
 ::-webkit-scrollbar-thumb{background:var(--amber);border-radius:2px;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,17,23,.97);padding:.875rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(245,158,11,.1);}
+nav{position:sticky;top:0;z-index:1000;background:#0d1117;padding:.875rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(245,158,11,.1);}
 .logo{display:flex;align-items:center;gap:.75rem;}
 .logo img{height:40px;width:auto;}
 .logo-text{font-size:1rem;font-weight:900;color:var(--white);}
@@ -42,23 +47,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,17,23,.9
 .ai-pill{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);color:var(--amber);padding:.15rem .65rem;border-radius:20px;font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;}
 
 /* HERO */
-#home{height:100vh;min-height:680px;display:grid;grid-template-columns:1fr 1fr;position:relative;margin-top:0;padding-top:62px;}
+#home{height:calc(100vh - 68px);min-height:640px;display:grid;grid-template-columns:1fr 1fr;position:relative;margin-top:0;padding-top:0;}
 @media(max-width:900px){#home{grid-template-columns:1fr;height:auto;min-height:100vh;}}
 .hero-left{position:relative;overflow:hidden;background:var(--ink);}
-.chaos-bg{position:absolute;inset:0;background-image:url('chaos-desk.png');background-size:cover;background-position:center;filter:brightness(.28) saturate(.8);}
+.chaos-bg{position:absolute;inset:0;background-image:url('chaos-desk.png');background-image:image-set(url('chaos-desk.webp') type('image/webp'),url('chaos-desk.png') type('image/jpeg'));background-size:cover;background-position:center;filter:brightness(.28) saturate(.8);}
 .chaos-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(220,38,38,.12),transparent 60%),linear-gradient(to top,rgba(13,17,23,.9) 0%,transparent 50%);}
 .hero-left-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:3.5rem 2.5rem;}
 .chaos-label{display:inline-flex;align-items:center;gap:.5rem;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.35);color:#fca5a5;font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.4rem .9rem;border-radius:3px;margin-bottom:1.25rem;width:fit-content;}
-.hero-left h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:.75rem;}
-.hero-left h2 span{color:#fca5a5;}
+.hero-left .hero-left-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:.75rem;}
+.hero-left .hero-left-title span{color:#fca5a5;}
 .chaos-items{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem;}
 .ci{font-size:.875rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.6rem;}
 .ci i{color:#f87171;font-size:.75rem;}
-.hero-divider{position:absolute;left:50%;top:62px;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--amber),transparent);z-index:10;transform:translateX(-50%);}
+.hero-divider{position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--amber),transparent);z-index:10;transform:translateX(-50%);}
 .divider-arrow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:11;box-shadow:0 0 0 6px rgba(245,158,11,.15),0 0 0 12px rgba(245,158,11,.07);}
 .divider-arrow i{color:#000;font-size:1rem;}
 @media(max-width:900px){.hero-divider{display:none;}}
-.hero-right{background:var(--ink2);display:flex;flex-direction:column;justify-content:center;padding:7rem 3rem 3.5rem;}
+.hero-right{background:var(--ink2);display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem 3.5rem;}
 @media(max-width:900px){.hero-right{padding:3rem 2rem 3.5rem;}}
 .typewriter-label{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.875rem;}
 .typewriter-line{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;color:var(--amber);min-height:2rem;margin-bottom:2rem;}
@@ -66,11 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,17,23,.9
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 .hero-right h1{font-size:clamp(2.5rem,5vw,4.25rem);font-weight:900;color:var(--white);line-height:1.0;letter-spacing:-.02em;margin-bottom:1.25rem;}
 .hero-right h1 em{color:var(--amber);font-style:normal;}
-.hero-sub{color:rgba(255,255,255,.45);font-size:1rem;line-height:1.8;margin-bottom:2rem;font-weight:300;max-width:420px;}
-.cost-ticker{background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);border-radius:8px;padding:1rem 1.35rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
-.ticker-label{font-size:.72rem;font-weight:700;color:#fca5a5;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;}
-.ticker-amount{font-size:1.85rem;font-weight:900;color:#f87171;letter-spacing:-.02em;}
-.ticker-sub{font-size:.7rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem;}
+.hero-sub{color:rgba(255,255,255,.72);font-size:1rem;line-height:1.8;margin-bottom:2rem;font-weight:300;max-width:420px;}
 .hero-cta-row{display:flex;gap:.875rem;flex-wrap:wrap;}
 .btn-amber{background:var(--amber);color:#000;padding:1rem 2rem;border-radius:6px;text-decoration:none;font-weight:800;font-size:.9rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;}
 .btn-amber:hover{background:var(--amber2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(245,158,11,.35);}
@@ -315,6 +316,22 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
 .fade-up{transition:opacity .7s ease,transform .7s ease;}
 .js-anim .fade-up{opacity:0;transform:translateY(22px);}
 .js-anim .fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* fix/claims-v1: contrast. Muted text on dark >= 62% white; amber labels on cream use amber-dark;
+   grey on cream is #4B5563 (values from design/audit/critique.md). */
+:root{--mid:#4b5563;}
+.s-tag{color:#92400e;} .s-tag::before{background:#92400e;}
+.step-badge{color:#92400e;}
+.c-ico{color:#92400e;}
+.nav-links a,.ai-strip,.ci,.typewriter-label,.ai-section p,.ai-card p,.v-body p,.cth,.wb-text p,.wb-lbl,
+.p-tier,.p-price small,.p-who,.p-list li,.p-btn-line,.vs-th,.vs-label,.p-note,.start-card p,.sb-foot,
+.ac-lbl,.ac-quote,.f-links a,.f-ai-badge,footer p,footer p a,.btn-outline{color:rgba(255,255,255,.66);}
+.start-box .sb-sub{color:rgba(255,255,255,.72);}
+.m-item{color:rgba(255,255,255,.55);}
+.vs-th.g,.cth.gold{color:var(--amber);}
+.f-links a:hover,.btn-outline:hover,.p-btn-line:hover{color:var(--amber);}
+picture{display:contents;}
+.cost-note{font-size:.8rem;color:var(--mid);margin:.75rem 0 0;text-align:right;}
 </style>
 </head>
 <body>
@@ -328,7 +345,7 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
 
 <nav>
   <div class="logo">
-    <img src="logo.png" alt="DataClearPath Logo"/>
+    <img src="logo.png" alt="DataClearPath Logo" width="910" height="225"/>
   </div>
   <button class="hamburger" id="hb" aria-label="Menu"><i class="fas fa-bars"></i></button>
   <ul class="nav-links" id="nl">
@@ -347,7 +364,7 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     <div class="chaos-overlay"></div>
     <div class="hero-left-content">
       <div class="chaos-label"><i class="fas fa-exclamation-triangle"></i> Still Running on Paper?</div>
-      <h2>This Is What Your<br/><span>Business Looks Like</span><br/>Right Now.</h2>
+      <p class="hero-left-title">This Is What Your<br/><span>Business Looks Like</span><br/>Right Now.</p>
       <div class="chaos-items">
         <div class="ci"><i class="fas fa-times-circle"></i> Binders no one can find</div>
         <div class="ci"><i class="fas fa-times-circle"></i> Writing the same thing down twice</div>
@@ -362,16 +379,9 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     <div class="typewriter-line"><span id="tw"></span><span class="cursor"></span></div>
     <h1>Your Business<br/>Can Run<br/><em>Smarter.</em></h1>
     <p class="hero-sub">We build the database, dashboard, or mobile app that replaces your paper system — so you can run your business instead of being buried by it.</p>
-    <div class="cost-ticker">
-      <div>
-        <div class="ticker-label">💸 Estimated hrs lost to paper this week</div>
-        <div class="ticker-amount" id="ticker">0.0 hrs</div>
-        <div class="ticker-sub">Across a 3-person team · Resets Sunday</div>
-      </div>
-    </div>
     <div class="hero-cta-row">
       <a href="#recognize" class="btn-amber"><i class="fas fa-arrow-down"></i> See If This Is You</a>
-      <a href="#contact" class="btn-outline">Free 30-Min Call</a>
+      <a href="#contact" class="btn-outline">Free 15-Minute Call</a>
     </div>
   </div>
 </div>
@@ -400,7 +410,7 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     <div class="recog-grid">
       <div class="fade-up">
         <div class="chaos-photo-wrap">
-          <img src="chaos-desk.png" alt="Paper chaos"/>
+          <picture><source srcset="chaos-desk.webp" type="image/webp"/><img src="chaos-desk.png" alt="Paper chaos" width="1024" height="1024" loading="lazy" decoding="async"/></picture>
           <div class="chaos-caption"><p><i class="fas fa-exclamation-circle"></i> This is still how most small businesses run every single day.</p></div>
         </div>
       </div>
@@ -425,13 +435,13 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     <h2 class="s-h s-h-w fade-up">Imagine Starting Monday With<br/>Everything Already in Order.</h2>
     <div class="rule fade-up"></div>
     <div class="vision-grid">
-      <div class="digital-photo fade-up"><img src="digital-relief.png" alt="Clean organized digital workspace"/></div>
+      <div class="digital-photo fade-up"><picture><source srcset="digital-relief.webp" type="image/webp"/><img src="digital-relief.png" alt="Clean organized digital workspace" width="1024" height="1024" loading="lazy" decoding="async"/></picture></div>
       <div class="v-list">
         <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-search"></i></div><div class="v-body"><h4>Find anything in under 10 seconds</h4><p>Type a name, date, or number. Results appear instantly. No binders, no guessing.</p></div></div>
         <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-mobile-alt"></i></div><div class="v-body"><h4>Your team enters data on their phone</h4><p>Forms filled in the field flow straight into your system. No re-entering. No lost paperwork.</p></div></div>
         <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-chart-bar"></i></div><div class="v-body"><h4>See your whole business on one screen</h4><p>Live numbers — jobs, revenue, what's pending — updated automatically.</p></div></div>
         <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-users"></i></div><div class="v-body"><h4>Your whole team on the same page</h4><p>Everyone logs in and sees the same real-time information. Always.</p></div></div>
-        <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-shield-alt"></i></div><div class="v-body"><h4>Records safe, backed up, always there</h4><p>No fire risk. No flood. Backed up daily — accessible from any device, forever.</p></div></div>
+        <div class="v-item fade-up"><div class="v-icon"><i class="fas fa-shield-alt"></i></div><div class="v-body"><h4>Records safe and backed up</h4><p>Kept in the cloud instead of a filing cabinet. Backed up daily while on a maintenance plan, and reachable from any device.</p></div></div>
       </div>
     </div>
   </div>
@@ -444,8 +454,8 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     <h2 class="fade-up">We Use <em>AI Tools</em> to Build Faster<br/>and Charge You Less.</h2>
     <p class="fade-up">AI doesn't replace the human thinking that goes into understanding your business. But it does mean we can build in days what used to take weeks — and pass those savings directly to you.</p>
     <div class="ai-cards fade-up">
-      <div class="ai-card"><i class="fas fa-bolt"></i><h4>Built in Days, Not Months</h4><p>AI-assisted development means your system is live faster. Most projects done in 3–5 weeks instead of 3–5 months.</p></div>
-      <div class="ai-card"><i class="fas fa-dollar-sign"></i><h4>Lower Cost, Same Quality</h4><p>We use AI tools to work smarter. That means our $1,200 Builder package delivers what agencies charge $8,000 for.</p></div>
+      <div class="ai-card"><i class="fas fa-bolt"></i><h4>Built in Days, Not Months</h4><p>AI-assisted development means your system is live faster. Builder projects are planned for 3–5 weeks.</p></div>
+      <div class="ai-card"><i class="fas fa-dollar-sign"></i><h4>Lower Cost, Same Quality</h4><p>We use AI tools to work smarter. That's how we keep the Builder package at a fixed $1,200.</p></div>
       <div class="ai-card"><i class="fas fa-brain"></i><h4>Smarter Systems From Day One</h4><p>AI helps us catch edge cases, optimize your data structure, and build systems that scale as your business grows.</p></div>
     </div>
   </div>
@@ -457,19 +467,20 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     <div class="s-tag fade-up">The Real Numbers</div>
     <h2 class="s-h fade-up">Paper Isn't Free.<br/>It's Costing You Every Day.</h2>
     <div class="rule"></div>
-    <img src="cost-savings.png" alt="Cost comparison" class="cost-img fade-up"/>
+    <picture><source srcset="cost-savings.webp" type="image/webp"/><img src="cost-savings.png" alt="Cost comparison" class="cost-img fade-up" width="1024" height="1024" loading="lazy" decoding="async"/></picture>
     <div class="cost-table fade-up">
       <div class="ct-head"><div class="cth">The Situation</div><div class="cth">Paper / Manual</div><div class="cth gold">Digital System</div></div>
       <div class="c-row"><div class="c-sit">Finding one old record</div><div class="c-bad">⏱ 10–20 minutes</div><div class="c-good">✓ Under 10 seconds</div></div>
-      <div class="c-row"><div class="c-sit">Data entry error rate</div><div class="c-bad">1 in every 25 entries wrong</div><div class="c-good">✓ Near zero</div></div>
-      <div class="c-row"><div class="c-sit">Fixing one mistake</div><div class="c-bad">$50–$150 per error</div><div class="c-good">✓ $0</div></div>
+      <div class="c-row"><div class="c-sit">Data entry mistakes</div><div class="c-bad">Typed twice, so errors creep in</div><div class="c-good">✓ Entered once, checked as you type</div></div>
+      <div class="c-row"><div class="c-sit">Fixing a mistake</div><div class="c-bad">Dig through paper to find it</div><div class="c-good">✓ Search, find and correct in one place</div></div>
       <div class="c-row"><div class="c-sit">Weekly admin per staff member</div><div class="c-bad">5–10 hrs on paperwork</div><div class="c-good">✓ Under 1 hour</div></div>
       <div class="c-row"><div class="c-sit">Monthly report</div><div class="c-bad">Half a day to compile</div><div class="c-good">✓ 30 seconds, automatic</div></div>
-      <div class="c-row"><div class="c-sit">Hiring a data entry person</div><div class="c-bad">$18,000–$35,000/year</div><div class="c-good">✓ Our system = $1,200 once</div></div>
+      <div class="c-row"><div class="c-sit">Keeping up with data entry</div><div class="c-bad">Hire someone, or pull staff off other work</div><div class="c-good">✓ One project price; maintenance optional</div></div>
     </div>
+    <p class="cost-note fade-up">Typical example (estimates, not measured results).</p>
     <div class="wow-box fade-up">
-      <div class="wb-text"><h3>A part-time data entry employee costs $18,000 a year. Our Builder package is $1,200 — one time.</h3><p>Pays for itself in the first month. Every month after that is pure savings — permanently.</p></div>
-      <div class="wb-num"><div class="wb-big">$0</div><div class="wb-lbl">Ongoing cost after setup</div></div>
+      <div class="wb-text"><h3>Builder is a one-time project price.</h3><p>No monthly fee required. Optional maintenance from $200/month keeps it running, updated and backed up.</p></div>
+      <div class="wb-num"><div class="wb-big">$1,200</div><div class="wb-lbl">One time · Builder</div></div>
     </div>
   </div>
 </section>
@@ -497,7 +508,7 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     <div class="rule"></div>
     <div class="port-list">
       <div class="port-item fade-up">
-        <div class="port-img"><img src="port-fleet.png" alt="Fleet management dashboard"/></div>
+        <div class="port-img"><picture><source srcset="port-fleet.webp" type="image/webp"/><img src="port-fleet.png" alt="Fleet management dashboard" width="1024" height="1024" loading="lazy" decoding="async"/></picture></div>
         <div>
           <div class="port-industry">🚐 Nonprofit Transportation · Brooklyn, NY</div>
           <h3>From Paper Clipboards to a Live Fleet System</h3>
@@ -517,11 +528,11 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
           <div class="port-tags"><span class="pt">iPhone App</span><span class="pt">Cloud Server</span><span class="pt">Desktop Extension</span><span class="pt">Real-Time Sync</span></div>
           <div class="port-result"><i class="fas fa-check-circle"></i> Live 24/7. Works from anywhere in the world.</div>
         </div>
-        <div class="port-img"><img src="port-realtime.png" alt="Real-time control system"/></div>
+        <div class="port-img"><picture><source srcset="port-realtime.webp" type="image/webp"/><img src="port-realtime.png" alt="Real-time control system" width="1024" height="1024" loading="lazy" decoding="async"/></picture></div>
       </div>
       <div class="port-divider fade-up"></div>
       <div class="port-item fade-up">
-        <div class="port-img"><img src="port-commerce.png" alt="E-commerce platform"/></div>
+        <div class="port-img"><picture><source srcset="port-commerce.webp" type="image/webp"/><img src="port-commerce.png" alt="E-commerce platform" width="1024" height="1024" loading="lazy" decoding="async"/></picture></div>
         <div>
           <div class="port-industry">🛒 Retail Business · New York</div>
           <h3>One Platform to Replace Three Broken Spreadsheets</h3>
@@ -604,9 +615,9 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
     </div>
     <div class="vs-wrap fade-up">
       <div class="vs-head"><div class="vs-th">Compare</div><div class="vs-th">Hiring Staff</div><div class="vs-th g">DataClearPath</div></div>
-      <div class="vs-row"><div class="vs-label">Annual Cost</div><div class="vs-no">$18K–$35K per year</div><div class="vs-yes">$0 after setup</div></div>
-      <div class="vs-row"><div class="vs-label">Time to Start</div><div class="vs-no">4–6 weeks to hire & train</div><div class="vs-yes">Live in 3–5 weeks</div></div>
-      <div class="vs-row"><div class="vs-label">When They Leave</div><div class="vs-no">Start over</div><div class="vs-yes">System stays forever</div></div>
+      <div class="vs-row"><div class="vs-label">Ongoing Cost</div><div class="vs-no">A salary, every year</div><div class="vs-yes">No monthly fee required; optional maintenance from $200/month</div></div>
+      <div class="vs-row"><div class="vs-label">Time to Start</div><div class="vs-no">Hiring and training take time</div><div class="vs-yes">Builder planned for 3–5 weeks</div></div>
+      <div class="vs-row"><div class="vs-label">When They Leave</div><div class="vs-no">Start over</div><div class="vs-yes">The system stays with you</div></div>
       <div class="vs-row"><div class="vs-label">Scales With Growth</div><div class="vs-no">Hire more people</div><div class="vs-yes">System grows with you</div></div>
     </div>
     <p class="p-note fade-up">Every project starts with a free call where we confirm exactly what's included — so the price you're quoted is the price you pay. Monthly maintenance from <strong style="color:var(--amber);">$200/month</strong> — we keep it running, updated & backed up. <a href="#contact">Ask us →</a></p>
@@ -670,6 +681,7 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
             <div class="fg"><label>Last Name</label><input type="text" name="last-name" placeholder="Smith" required/></div>
           </div>
           <div class="fg"><label>Email Address</label><input type="email" name="email" placeholder="john@yourbusiness.com" required/></div>
+          <p style="font-size:.78rem;color:var(--mid);margin:-.25rem 0 1.1rem;">We use your details only to reply to you. <a href="/privacy" style="color:#92400e;">Privacy notice</a>.</p>
           <div class="fg"><label>What Kind of Business?</label>
             <select name="business-type" required><option value="">Select your industry</option>
               <option>Transportation & Logistics</option><option>Healthcare & Medical</option>
@@ -682,7 +694,7 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
             <textarea name="message" placeholder="Just describe it in plain English. We'll take it from there." required></textarea>
           </div>
           <input type="hidden" name="_subject" value="New DataClearPath inquiry from the website"/>
-          <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> Send — We'll Respond Today</button>
+          <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> Send — We'll reply within 24 hours</button>
         </form>
       </div>
     </div>
@@ -691,16 +703,17 @@ footer p{color:rgba(255,255,255,.15);font-size:.78rem;}
 
 <footer>
   <div class="f-logo">
-    <img src="logo.png" alt="DataClearPath"/>
+    <img src="logo.png" alt="DataClearPath" width="910" height="225" loading="lazy" decoding="async"/>
   </div>
   <div class="f-links">
     <a href="#recognize">The Problem</a>
     <a href="#portfolio">Our Work</a>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
+    <a href="/privacy">Privacy</a>
   </div>
   <div class="f-ai-badge"><i class="fas fa-robot"></i> Built with AI · Delivered by humans</div>
-  <p>© 2026 DataClearPath · New York, NY · <a href="mailto:hello@dataclearpath.com" style="color:rgba(255,255,255,.3);text-decoration:none;">hello@dataclearpath.com</a> · <a href="tel:+13474670372" style="color:rgba(255,255,255,.3);text-decoration:none;">(347) 467-0372</a></p>
+  <p>© 2026 DataClearPath · New York, NY · <a href="mailto:hello@dataclearpath.com" style="color:rgba(255,255,255,.66);text-decoration:none;">hello@dataclearpath.com</a> · <a href="tel:+13474670372" style="color:rgba(255,255,255,.66);text-decoration:none;">(347) 467-0372</a></p>
 </footer>
 
 <script>
@@ -724,8 +737,6 @@ let pi=0,ci2=0,del=false;
 const tw=document.getElementById('tw');
 function type(){const p=phrases[pi];if(!del){tw.textContent=p.slice(0,++ci2);if(ci2===p.length){del=true;setTimeout(type,1800);return;}}else{tw.textContent=p.slice(0,--ci2);if(ci2===0){del=false;pi=(pi+1)%phrases.length;}}setTimeout(type,del?40:65);}
 type();
-function updateTicker(){const now=new Date(),monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));monday.setHours(0,0,0,0);const hrs=Math.min((now-monday)/3600000,40)/40*18;document.getElementById('ticker').textContent=hrs.toFixed(1)+' hrs';}
-updateTicker();setInterval(updateTicker,30000);
 // Contact form -> Formspree (submits in the background so the success message shows inline)
 const cf=document.getElementById('contactForm');
 if(cf){cf.addEventListener('submit',async function(e){
