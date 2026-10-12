@@ -57,13 +57,14 @@ footer a{color:rgba(255,255,255,.66);}
 
   <h2>How your Checkup file is handled</h2>
   <ul>
-    <li>Our AI tools read your file to help draft the report, and Akiva reviews every report before it's sent. The AI providers process the file only to produce that draft. <span class="confirm">TO CONFIRM: which AI providers</span></li>
-    <li>Your file is kept for 30 days after your report is delivered, then deleted. <span class="confirm">TO CONFIRM</span></li>
-    <li>Your file is stored encrypted. <span class="confirm">TO CONFIRM</span></li>
+    <li>Your file is read by an AI model (Claude, from Anthropic) to help draft the report, and Akiva reviews every report before it's sent. The file is sent to Anthropic only to produce that draft.</li>
+    <li>Your file and your report are stored with Cloudflare, and both are deleted 30 days after your report is sent.</li>
+    <li>We keep your email, the file name and your notes so we can answer questions about your order.</li>
+    <li>If you upload a file but don't finish paying, it's deleted within [N] days. <span class="confirm">TO CONFIRM: not yet automatic</span></li>
   </ul>
 
   <h2>Who else handles your information</h2>
-  <p>Only the services we need to run this site and do the work: Formspree (contact form), PayPal (payments), our AI tools (Checkup drafts), our email provider (replies), and Cloudflare and GitHub (they host and deliver this website). Our pages also load fonts from Google Fonts and icons from cdnjs, so your browser connects to those services when you visit.</p>
+  <p>Only the services we need to run this site and do the work: Formspree (contact form), PayPal (payments), Anthropic (AI drafts of Checkup reports), Resend (emails about your order), our email provider (replies), Cloudflare (stores Checkup files and reports, and delivers this website) and GitHub (hosts this website). Our pages also load fonts from Google Fonts and icons from cdnjs, so your browser connects to those services when you visit.</p>
 
   <h2>Your choices</h2>
   <ul>

@@ -13,6 +13,10 @@
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#0d1117"/>
+<!-- Cloudflare Web Analytics: OFF. Enable only after Akiva creates the site in the dashboard,
+     and update /privacy first. Then uncomment and paste the token:
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PASTE_TOKEN"}'></script>
+-->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
@@ -389,9 +393,6 @@ picture{display:contents;}
 </div>
 
 <div class="proof-bar">
-  <div class="proof-item"><i class="fas fa-database"></i><span><span class="proof-num">3</span> Live Systems Built</span></div>
-  <div class="proof-item"><i class="fas fa-file-alt"></i><span><span class="proof-num">500+</span> Paper Records Rescued</span></div>
-  <div class="proof-item"><i class="fas fa-mobile-alt"></i><span><span class="proof-num">3</span> Mobile Apps Shipped</span></div>
   <div class="proof-item"><i class="fas fa-robot"></i><span>AI-Powered Builds</span></div>
   <div class="proof-item"><i class="fas fa-handshake"></i><span>Free First Conversation</span></div>
 </div>
@@ -505,25 +506,25 @@ picture{display:contents;}
 <!-- PORTFOLIO -->
 <section id="portfolio" class="sec" style="background:var(--cream2);">
   <div class="sec-inner">
-    <div class="s-tag fade-up">Real Work</div>
-    <h2 class="s-h fade-up">Real Businesses.<br/>Real Transformations.</h2>
+    <div class="s-tag fade-up">Our Own Builds</div>
+    <h2 class="s-h fade-up">Real Systems<br/>I've Built.</h2>
     <div class="rule"></div>
     <div class="port-list">
       <div class="port-item fade-up">
         <div class="port-img"><picture><source srcset="port-fleet.webp" type="image/webp"/><img src="port-fleet.png" alt="Fleet management dashboard" width="1024" height="1024" loading="lazy" decoding="async"/></picture></div>
         <div>
-          <div class="port-industry">🚐 Nonprofit Transportation · Brooklyn, NY</div>
+          <div class="port-industry">🚐 Our own build · Nonprofit transportation fleet, Brooklyn</div>
           <h3>From Paper Clipboards to a Live Fleet System</h3>
           <div class="port-prob"><div class="pb-lbl r">❌ Before</div><p>Drivers turned in handwritten trip logs at end of each shift. An office worker re-typed every record manually. Nobody knew in real time where drivers were.</p></div>
           <div class="port-sol"><div class="pb-lbl g">✓ After</div><p>Full database, live web dashboard, and a driver mobile app. Data flows straight into the system. No re-entry. No paper. Nothing lost.</p></div>
-          <div class="port-tags"><span class="pt">Database</span><span class="pt">Web Dashboard</span><span class="pt">Driver Mobile App</span><span class="pt">500+ Records Migrated</span></div>
+          <div class="port-tags"><span class="pt">Database</span><span class="pt">Web Dashboard</span><span class="pt">Driver Mobile App</span></div>
           <div class="port-result"><i class="fas fa-check-circle"></i> Zero clipboards. Fully live. Team trained day one.</div>
         </div>
       </div>
       <div class="port-divider fade-up"></div>
       <div class="port-item rev fade-up">
         <div>
-          <div class="port-industry">⚡ Technology Client · Remote</div>
+          <div class="port-industry">⚡ Our own build · ZeroG: remote control for desktop software</div>
           <h3>A Real-Time System Connecting Four Services at Once</h3>
           <div class="port-prob"><div class="pb-lbl r">❌ Before</div><p>Needed to control desktop software from an iPhone — in real time, from anywhere. No off-the-shelf product existed. Every workaround broke.</p></div>
           <div class="port-sol"><div class="pb-lbl g">✓ After</div><p>Custom architecture: iPhone app, cloud relay server, desktop extension, and local bridge agent — all communicating live. Command sent, action taken in under a second.</p></div>
@@ -536,12 +537,12 @@ picture{display:contents;}
       <div class="port-item fade-up">
         <div class="port-img"><picture><source srcset="port-commerce.webp" type="image/webp"/><img src="port-commerce.png" alt="E-commerce platform" width="1024" height="1024" loading="lazy" decoding="async"/></picture></div>
         <div>
-          <div class="port-industry">🛒 Retail Business · New York</div>
+          <div class="port-industry">🛒 Our own build (prototype) · Retail order & inventory platform</div>
           <h3>One Platform to Replace Three Broken Spreadsheets</h3>
-          <div class="port-prob"><div class="pb-lbl r">❌ Before</div><p>Orders, inventory, and customers lived in three separate spreadsheets — always out of sync. Orders got missed. Nobody trusted the numbers.</p></div>
-          <div class="port-sol"><div class="pb-lbl g">✓ After</div><p>One unified platform. Orders, inventory, customer history, and automatic reports — all live, all in one place. Spreadsheet chaos gone for good.</p></div>
+          <div class="port-prob"><div class="pb-lbl r">❌ Before</div><p>The problem it's built for: orders, inventory and customers kept in three separate spreadsheets that drift out of sync.</p></div>
+          <div class="port-sol"><div class="pb-lbl g">✓ After</div><p>A prototype of one platform for orders, inventory, customer history and automatic reports, all in one place.</p></div>
           <div class="port-tags"><span class="pt">Order Management</span><span class="pt">Live Inventory</span><span class="pt">Customer Records</span><span class="pt">Auto Reports</span></div>
-          <div class="port-result"><i class="fas fa-check-circle"></i> One system. Whole team. Done.</div>
+          <div class="port-result"><i class="fas fa-check-circle"></i> Prototype: built and working, not yet in daily use.</div>
         </div>
       </div>
     </div>
@@ -634,18 +635,12 @@ picture{display:contents;}
     <div class="rule"></div>
     <div class="about-grid">
       <div class="about-card fade-up">
-        <div class="ac-stats">
-          <div><div class="ac-num">3</div><div class="ac-lbl">Live systems running</div></div>
-          <div><div class="ac-num">500+</div><div class="ac-lbl">Records rescued</div></div>
-          <div><div class="ac-num">3</div><div class="ac-lbl">Mobile apps shipped</div></div>
-          <div><div class="ac-num">0</div><div class="ac-lbl">Projects abandoned</div></div>
-        </div>
         <div class="ac-quote">"The best system is the one your team actually uses every single day. That's all we build."</div>
       </div>
       <div class="fade-up">
         <div class="about-text">
-          <p>I'm Akiva, founder of DataClearPath. I don't have a computer science degree. What I have is a track record of walking into businesses drowning in paper — and leaving them a system that actually works.</p>
-          <p><strong>I learned by building real things for real businesses.</strong> Every system I've built is live and being used right now. I use the latest AI tools to build faster and smarter — which means you get more for less.</p>
+          <p>I'm Akiva, founder of DataClearPath. I don't have a computer science degree. What I have is hands-on experience building real systems that replace paper and patchwork spreadsheets.</p>
+          <p><strong>I learned by building real things for real businesses.</strong> My systems are built to be used every day. I use the latest AI tools to build faster and smarter — which means you get more for less.</p>
           <p>You don't need a giant IT company. You need one person who listens, understands your operation, and builds something your team will actually use — without needing a manual to figure it out.</p>
           <div class="sk-row">
             <span class="sk">Database Design</span><span class="sk">Web Dashboards</span><span class="sk">Mobile Apps</span>
