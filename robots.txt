@@ -1,0 +1,8 @@
+# DataClearPath: everything public is open to search and AI crawlers.
+# One * group on purpose: a named group (OAI-SearchBot, PerplexityBot, GPTBot...) would replace it.
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /d/
+
+Sitemap: https://dataclearpath.com/sitemap.xml

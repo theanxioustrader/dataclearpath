@@ -106,6 +106,9 @@ h2{font:900 clamp(1.75rem,4vw,2.5rem)/1.1 Inter}
 .limits{margin:18px 0 0;padding:14px 0 0;border-top:1px solid #EEF0F2;list-style:none;display:grid;gap:6px;font-size:14.5px;color:var(--ink-2)}
 .limits li{display:flex;justify-content:space-between;gap:10px}.limits b{color:var(--ink);font-weight:600;text-align:right}
 .card .btn{margin-top:20px}
+.promise{margin:14px 0 0;font-size:13.5px;color:var(--ink-2)}.promise b{color:var(--ink)}
+.more-link{margin:12px 0 0;font-size:14.5px;font-weight:600}.more-link a{color:var(--amber-ink)}
+.faq{padding:56px 0;background:var(--cream)}.faq .qa{margin-top:18px;max-width:760px}.faq .qa h3{font-size:18px}.faq .qa p{margin:4px 0 0;color:var(--ink-2)}
 .soon{background:#E5E7EB;color:#1F2937;font:700 11.5px/1.4 Inter;padding:4px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em}
 .quote{margin-top:20px;display:grid;gap:14px;padding:22px 24px;border-radius:16px;background:var(--amber-bg);border:1px solid #FCD34D}
 @media(min-width:720px){.quote{grid-template-columns:1fr auto;align-items:center}}
@@ -211,6 +214,8 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
           <p class="price">$2 <span>/ page</span></p>
           <p class="min">$19 minimum</p>
           <ul class="limits"><li>Pages <b>up to 100</b></li><li>File <b>1 PDF · up to 20 MB</b></li><li>You get <b>.xlsx</b></li></ul>
+          <p class="promise"><b>Accuracy promise:</b> We flag anything we're unsure of. If more than 2% of the cells we didn't flag are wrong, tell us within 30 days of delivery and we'll fix them free, or refund you if you prefer.</p>
+          <p class="more-link"><a href="/tools/pdf-tables">More about this tool</a></p>
           <a class="btn btn-dark" data-kind="pdf_tables" aria-disabled="true">Opening soon</a>
         </article>
         <article class="card">
@@ -219,7 +224,9 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
           <p class="what"><b>Snap photos of your paper forms. Get them back typed into a spreadsheet.</b> Every cell we can't read with confidence is flagged for you to confirm. Messy handwriting gets flagged, not guessed.</p>
           <p class="price">$3 <span>/ page</span></p>
           <p class="min">$29 minimum</p>
-          <ul class="limits"><li>Pages <b>up to 50</b></li><li>Files <b>images or PDF · up to 20 MB</b></li><li>You get <b>.xlsx</b></li></ul>
+          <ul class="limits"><li>Pages <b>up to 50</b></li><li>File <b>1 PDF (combine your photos into one PDF first) · up to 20 MB</b></li><li>You get <b>.xlsx</b></li></ul>
+          <p class="promise"><b>Accuracy promise:</b> We flag anything we're unsure of. If more than 2% of the cells we didn't flag are wrong, tell us within 30 days of delivery and we'll fix them free, or refund you if you prefer.</p>
+          <p class="more-link"><a href="/tools/paper-forms">More about this tool</a></p>
           <a class="btn btn-dark" data-kind="paper_forms" aria-disabled="true">Opening soon</a>
         </article>
         <article class="card">
@@ -236,6 +243,17 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
         <div><b>More than the limits? Request a quote.</b><p>The upload won't accept it. Request a quote instead, or book a free 15-minute call.</p></div>
         <a class="btn btn-line" href="/#contact">Book a Free 15-Minute Call</a>
       </div>
+    </div>
+  </section>
+
+  <section class="faq" aria-labelledby="fq">
+    <div class="wrap">
+      <h2 id="fq">Common questions</h2>
+      <div class="qa"><h3>How much do the tools cost?</h3><p>PDF Tables is $2 per page with a $19 minimum. Paper Forms is $3 per page with a $29 minimum. The Spreadsheet Health Score is free.</p></div>
+      <div class="qa"><h3>How long does it take?</h3><p>Paid orders are delivered within 3 days from upload. Orders over 50 pages take up to 5 days. The free Health Score is instant.</p></div>
+      <div class="qa"><h3>Is my file kept?</h3><p>Your files and results are deleted 30 days after we deliver, the same as our Checkup. With the free Health Score, your file isn't kept after the score is made.</p></div>
+      <div class="qa"><h3>Does a person check the results?</h3><p>Yes. Akiva reviews every paid order before it reaches you. The free Health Score is fully automatic, with no human review.</p></div>
+      <p class="more-link">Learn more: <a href="/tools/pdf-tables">PDF Tables to Spreadsheet</a> · <a href="/tools/paper-forms">Paper Forms to Spreadsheet</a> · <a href="/guides/paper-to-spreadsheet">How to turn paper forms into a spreadsheet</a></p>
     </div>
   </section>
 
@@ -260,7 +278,7 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
 
 <footer><div class="wrap">
   <span>© 2026 DataClearPath · Brooklyn, NY</span>
-  <a href="/">Home</a><a href="/privacy">Privacy</a><a href="mailto:hello@dataclearpath.com">hello@dataclearpath.com</a>
+  <a href="/">Home</a><a href="/tools/pdf-tables">PDF Tables</a><a href="/tools/paper-forms">Paper Forms</a><a href="/guides/paper-to-spreadsheet">Guide</a><a href="/checkup">Spreadsheet Checkup</a><a href="/privacy">Privacy</a><a href="mailto:hello@dataclearpath.com">hello@dataclearpath.com</a>
 </div></footer>
 
 <script>
