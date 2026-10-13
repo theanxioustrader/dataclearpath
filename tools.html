@@ -83,6 +83,7 @@ h2{font:900 clamp(1.75rem,4vw,2.5rem)/1.1 Inter}
 .probs h3{font-size:17px;letter-spacing:-.01em}
 .probs p{margin:4px 0 0;color:var(--ink-2);font-size:15px}
 .probs p.ex{color:var(--grey);font-size:13.5px;word-break:break-word}
+.more{margin-top:12px}.more summary{cursor:pointer;font-weight:700;font-size:15px;color:var(--ink);padding:6px 0}
 .sev{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;font:700 11.5px/1.5 Inter;vertical-align:2px}
 .sev.low{background:#E5E7EB;color:#1F2937}.sev.high{background:var(--red-bg);color:var(--red)}.sev.medium{background:var(--amber-bg);color:var(--amber-ink)}
 .upsell{margin-top:20px;display:flex;flex-wrap:wrap;gap:14px;padding:20px;border-radius:14px;background:var(--dark)}
@@ -189,6 +190,7 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
         <div>
           <h2 id="r" style="font-size:clamp(1.4rem,3vw,1.9rem)" tabindex="-1">Your top 3 problems</h2>
           <ol class="probs" id="hs-probs"></ol>
+          <details class="more" id="hs-more" hidden><summary id="hs-more-sum"></summary><ol class="probs" id="hs-probs-more"></ol></details>
           <div class="upsell"><a class="btn" href="/checkup">Get the full $49 Checkup →</a></div>
           <p class="again">Your file isn't kept after the score is made. <a href="#health">Check another file</a></p>
         </div>
@@ -336,21 +338,24 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
     var sec=document.getElementById('hs-result'), list=document.getElementById('hs-probs'), ring=document.getElementById('hs-ring'), sc=document.getElementById('hs-score');
     document.getElementById('hs-file-name').textContent=fileName;
     document.getElementById('hs-note').textContent=j.note||'';
-    list.textContent='';
+    var more=document.getElementById('hs-probs-more'), moreBox=document.getElementById('hs-more'), moreSum=document.getElementById('hs-more-sum');
+    list.textContent='';more.textContent='';moreBox.hidden=true;moreBox.open=false;
     if(j.score===null||j.score===undefined){
       sc.textContent='–';ring.style.setProperty('--v',0);ring.setAttribute('aria-label','No score');
       var li=el('li');li.style.gridTemplateColumns='1fr';li.appendChild(el('p',null,j.message||'Nothing to score yet'));list.appendChild(li);
     }else{
       var score=Math.max(0,Math.min(100,Math.round(Number(j.score)||0)));
       sc.textContent=score;ring.style.setProperty('--v',score);ring.setAttribute('aria-label','Health score '+score+' out of 100');
-      (j.problems||[]).slice(0,3).forEach(function(pr,i){
+      var all=Array.isArray(j.problems)?j.problems:[];
+      all.forEach(function(pr,i){
         var li=el('li'), d=el('div'), h=el('h3',null,pr.title||'');
         var sev=String(pr.severity||'').toLowerCase();
         if(/^(high|medium|low)$/.test(sev))h.appendChild(el('span','sev '+sev,sev.charAt(0).toUpperCase()+sev.slice(1)));
         d.appendChild(h);d.appendChild(el('p',null,pr.detail||''));
         if(pr.example)d.appendChild(el('p','ex',String(pr.example)));
-        li.appendChild(el('span','n',String(i+1)));li.appendChild(d);list.appendChild(li);
+        li.appendChild(el('span','n',String(i+1)));li.appendChild(d);(i<3?list:more).appendChild(li);
       });
+      if(all.length>3){moreSum.textContent='See all '+all.length+' problems';moreBox.hidden=false;}
     }
     sec.hidden=false;document.getElementById('r').focus();sec.scrollIntoView({behavior:'smooth'});
     form.reset();nameEl.textContent='';
