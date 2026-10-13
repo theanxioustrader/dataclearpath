@@ -160,14 +160,15 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
           </ul>
         </div>
         <div>
-          <form class="drop" id="hs-form" method="post" action="/api/health-score" enctype="multipart/form-data">
+          <form class="drop" id="hs-form">
             <span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
             <label for="hs-file">Choose a file or drop it here</label>
-            <input class="sr" id="hs-file" name="file" type="file" accept=".xlsx,.csv" required/>
+            <input class="sr" id="hs-file" name="file" type="file" accept=".xlsx,.csv" required disabled/>
             <small>1 file · .xlsx or .csv · up to 5 MB</small>
             <span class="fname" id="hs-name"></span>
             <div id="hs-ts"></div>
-            <button class="btn" id="hs-btn" type="submit">Get my free score</button>
+            <button class="btn" id="hs-btn" type="submit" disabled>Coming soon</button>
+            <noscript><p class="msg">Needs JavaScript to run the free check.</p></noscript>
             <p class="msg" id="hs-msg" role="status" aria-live="polite"></p>
           </form>
           <p class="fine-d">Good to know: fully automatic, with no human review. Your file isn't kept after the score is made. Price: free.</p>
@@ -207,7 +208,7 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
           <p class="price">$2 <span>/ page</span></p>
           <p class="min">$19 minimum</p>
           <ul class="limits"><li>Pages <b>up to 100</b></li><li>File <b>1 PDF · up to 20 MB</b></li><li>You get <b>.xlsx</b></li></ul>
-          <a class="btn btn-dark" href="/checkup?kind=pdf_tables">Start</a>
+          <a class="btn btn-dark" data-kind="pdf_tables" aria-disabled="true">Opening soon</a>
         </article>
         <article class="card">
           <div class="top-row"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></div>
@@ -216,7 +217,7 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
           <p class="price">$3 <span>/ page</span></p>
           <p class="min">$29 minimum</p>
           <ul class="limits"><li>Pages <b>up to 50</b></li><li>Files <b>images or PDF · up to 20 MB</b></li><li>You get <b>.xlsx</b></li></ul>
-          <a class="btn btn-dark" href="/checkup?kind=paper_forms">Start</a>
+          <a class="btn btn-dark" data-kind="paper_forms" aria-disabled="true">Opening soon</a>
         </article>
         <article class="card">
           <div class="top-row"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span><span class="soon">Coming later</span></div>
@@ -261,10 +262,10 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
 
 <script>
 (function(){
-  // Free Health Score (Worker contract, Builder B 2026-10-12): POST /api/health-score only.
-  // Probe = POST with no body: 503 = off, anything else = on. Submit = multipart "file" + X-Turnstile-Token header.
+  // Tools page <-> Worker contract (Director, binding): the page reads ONLY GET /api/tools-status to enable anything.
+  // {health_score:{enabled, max_mb, turnstile_site_key}, kinds:{pdf_tables:{enabled,...}, paper_forms:{enabled,...}}}
+  // Anything missing, non-200 or unreadable = everything stays "Coming soon" / "Opening soon".
   var API='/api/health-score', MAX=5*1024*1024;
-  var SITEKEY=''; // public Turnstile site key for the "health_score" widget; empty = stay on "Coming soon"
   var form=document.getElementById('hs-form'), input=document.getElementById('hs-file'), btn=document.getElementById('hs-btn'),
       msg=document.getElementById('hs-msg'), nameEl=document.getElementById('hs-name'), tsBox=document.getElementById('hs-ts');
   var token='', widget=null;
@@ -273,9 +274,9 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
   function resetTs(){token='';if(widget!==null&&window.turnstile)window.turnstile.reset(widget);}
   comingSoon();
 
-  function startTurnstile(){
+  function startTurnstile(siteKey){
     window.dcpTs=function(){
-      widget=window.turnstile.render(tsBox,{sitekey:SITEKEY,action:'health_score',
+      widget=window.turnstile.render(tsBox,{sitekey:siteKey,action:'health_score',
         callback:function(t){token=t;},'expired-callback':function(){token='';},'error-callback':function(){token='';}});
       ready();
     };
@@ -283,9 +284,20 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
     s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=dcpTs';s.async=true;
     document.head.appendChild(s);
   }
-  if(SITEKEY){
-    fetch(API,{method:'POST',cache:'no-store'}).then(function(r){if(r.status!==503)startTurnstile();}).catch(function(){});
+  function enableKind(a,k){
+    var kind=a.getAttribute('data-kind');
+    if(k&&k[kind]&&k[kind].enabled===true){a.setAttribute('href','/checkup?kind='+kind);a.removeAttribute('aria-disabled');a.textContent='Start';}
   }
+
+  fetch('/api/tools-status',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(st){
+    if(!st)return;
+    var hs=st.health_score;
+    if(hs&&hs.enabled===true&&typeof hs.turnstile_site_key==='string'&&hs.turnstile_site_key){
+      var mb=Number(hs.max_mb);if(mb>0&&mb<=5)MAX=mb*1024*1024;
+      startTurnstile(hs.turnstile_site_key);
+    }
+    document.querySelectorAll('a[data-kind]').forEach(function(a){enableKind(a,st.kinds);});
+  }).catch(function(){});
 
   function check(f){
     if(!f)return 'Please choose a file.';
