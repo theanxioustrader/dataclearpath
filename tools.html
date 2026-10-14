@@ -64,6 +64,7 @@ h2{font:900 clamp(1.75rem,4vw,2.5rem)/1.1 Inter}
 .drop small{color:var(--on-dark-2);font-size:14px}
 .drop .fname{color:#fff;font-size:14.5px;font-weight:600;word-break:break-all}
 .drop .btn{margin-top:10px;width:100%;max-width:320px}
+#hs-btn{white-space:normal;text-align:center;line-height:1.3;padding:12px 16px}
 .drop .msg{min-height:1.4em;margin:0;color:#FCD34D;font-size:14px}
 .fine-d{margin-top:10px;color:var(--on-dark-2);font-size:13.5px}
 
@@ -172,7 +173,7 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
             <small>1 file · .xlsx or .csv · up to 5 MB</small>
             <span class="fname" id="hs-name"></span>
             <div id="hs-ts"></div>
-            <button class="btn" id="hs-btn" type="submit" disabled>Coming soon</button>
+            <button class="btn" id="hs-btn" type="submit" disabled>Turn on JavaScript to use the free score</button>
             <noscript><p class="msg">Needs JavaScript to run the free check.</p></noscript>
             <p class="msg" id="hs-msg" role="status" aria-live="polite"></p>
           </form>
@@ -293,16 +294,22 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
   function comingSoon(){btn.disabled=true;btn.textContent='Coming soon';input.disabled=true;msg.textContent='';}
   function ready(){btn.disabled=false;btn.textContent='Get my free score';input.disabled=false;}
   function resetTs(){token='';if(widget!==null&&window.turnstile)window.turnstile.reset(widget);}
-  comingSoon();
+  function loading(){btn.disabled=true;btn.textContent='Checking…';input.disabled=true;msg.textContent='';}
+  function blocked(){btn.disabled=true;btn.textContent="Spam check didn't load";input.disabled=true;
+    msg.textContent="The spam check didn't load. Please reload, turn off your ad or tracker blocker for this page, or try another browser.";}
+  loading();
 
   function startTurnstile(siteKey){
+    var up=false, timer=setTimeout(function(){if(!up)blocked();},8000);
     window.dcpTs=function(){
+      up=true;clearTimeout(timer);
       widget=window.turnstile.render(tsBox,{sitekey:siteKey,action:'health_score',
-        callback:function(t){token=t;},'expired-callback':function(){token='';},'error-callback':function(){token='';}});
+        callback:function(t){token=t;},'expired-callback':function(){token='';},'error-callback':function(){token='';blocked();}});
       ready();
     };
     var s=document.createElement('script');
     s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=dcpTs';s.async=true;
+    s.onerror=function(){clearTimeout(timer);blocked();};
     document.head.appendChild(s);
   }
   function enableKind(a,k){
@@ -311,14 +318,14 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
   }
 
   fetch('/api/tools-status',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(st){
-    if(!st)return;
+    if(!st){comingSoon();return;}
     var hs=st.health_score;
     if(hs&&hs.enabled===true&&typeof hs.turnstile_site_key==='string'&&hs.turnstile_site_key){
       var mb=Number(hs.max_mb);if(mb>0&&mb<=5)MAX=mb*1024*1024;
       startTurnstile(hs.turnstile_site_key);
-    }
+    }else comingSoon();
     document.querySelectorAll('a[data-kind]').forEach(function(a){enableKind(a,st.kinds);});
-  }).catch(function(){});
+  }).catch(comingSoon);
 
   function check(f){
     if(!f)return 'Please choose a file.';
