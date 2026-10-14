@@ -305,7 +305,9 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
   function comingSoon(){setState('off');}
   function resetTs(){token='';try{if(widget!==null&&window.turnstile)window.turnstile.reset(widget);}catch(e){}}
   // After a submit finishes: back to ready only if nothing broke meanwhile (an error callback may have blocked the form).
-  function finish(){if(state==='submitting')setState('ready');resetTs();}
+  // A request in flight keeps the form closed: pending is cleared only here (or on 503), never by a token callback.
+  var pending=false, reqId=0;
+  function finish(){pending=false;if(state==='submitting')setState('ready');resetTs();}
   setState('loading');
 
   function startTurnstile(siteKey){
@@ -315,7 +317,7 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
       var errored=false;
       try{
         widget=window.turnstile.render(tsBox,{sitekey:siteKey,action:'health_score',
-          callback:function(t){token=t;if(state==='blocked')setState('ready');},
+          callback:function(t){token=t;if(state==='blocked'&&!pending)setState('ready');},
           'expired-callback':function(){token='';},
           'error-callback':function(){token='';errored=true;setState('blocked');}});
       }catch(e){errored=true;setState('blocked');}
@@ -357,20 +359,23 @@ footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
 
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    if(state!=='ready')return;
+    if(state!=='ready'||pending)return;
     var f=input.files[0], err=check(f);
     if(err){msg.textContent=err;return;}
     if(!token){msg.textContent='Please wait a moment, then try again.';return;}
     var fd=new FormData();fd.append('file',f);
+    var my=++reqId;pending=true;
     setState('submitting');
-    function fail(text){var wasBlocked=state==='blocked';finish();if(!wasBlocked&&state!=='blocked')msg.textContent=text;}
+    function fail(text){if(my!==reqId)return;var wasBlocked=state==='blocked';finish();if(!wasBlocked&&state!=='blocked')msg.textContent=text;}
     fetch(API,{method:'POST',body:fd,headers:{'X-Turnstile-Token':token}}).then(function(r){
-      if(r.status===503){comingSoon();return null;}
+      if(my!==reqId)return null;
+      if(r.status===503){pending=false;comingSoon();return null;}
       return r.json().catch(function(){return {};}).then(function(j){
+        if(my!==reqId)return null;
         if(!r.ok){fail((j&&j.error)||'Something went wrong. Please try again.');return null;}
         return j;
       });
-    }).then(function(j){if(j)show(j,f.name);}).catch(function(){fail('Something went wrong. Please try again.');});
+    }).then(function(j){if(j&&my===reqId)show(j,f.name);}).catch(function(){fail('Something went wrong. Please try again.');});
   });
 
   function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;}
