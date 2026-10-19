@@ -788,7 +788,7 @@ const phrases=["\"I know it's in here somewhere…\"","Writing the same thing do
 let pi=0,ci2=0,del=false;
 const tw=document.getElementById('tw');
 function type(){const p=phrases[pi];if(!del){tw.textContent=p.slice(0,++ci2);if(ci2===p.length){del=true;setTimeout(type,1800);return;}}else{tw.textContent=p.slice(0,--ci2);if(ci2===0){del=false;pi=(pi+1)%phrases.length;}}setTimeout(type,del?40:65);}
-tw.textContent=phrases[0];
+if(tw)tw.textContent=phrases[0];
 // Contact form -> Formspree (submits in the background so the success message shows inline)
 const cf=document.getElementById('contactForm');
 if(cf){cf.addEventListener('submit',async function(e){
