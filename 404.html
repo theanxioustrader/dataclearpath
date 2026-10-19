@@ -22,5 +22,11 @@ a.btn:hover{background:#fbbf24;}
 <h1>Page not found</h1>
 <p>Sorry, there's nothing at this address.</p>
 <a class="btn" href="/">Go to the home page</a>
+<script>
+// Known pages typed or linked with a trailing slash, capital letters or .html go to the real address instead of a dead end.
+(function(){var ok=['/pricing','/fleets','/contractors','/shops','/tools','/tools/pdf-tables','/tools/paper-forms','/guides/paper-to-spreadsheet','/privacy','/checkup'];
+var p=location.pathname.toLowerCase().replace(/.html$/,'').replace(//+$/,'');
+if(p!==location.pathname&&ok.indexOf(p)>-1)location.replace(p+location.search+location.hash);})();
+</script>
 </body>
 </html>
