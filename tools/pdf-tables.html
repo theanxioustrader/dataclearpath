@@ -46,6 +46,18 @@ p,li{color:var(--ink-2)}ul,ol{padding-left:1.25rem;margin:10px 0}li+li{margin-to
 .related{margin-top:40px}.related ul{list-style:none;padding:0}.related a{font-weight:600}
 footer{background:var(--dark);border-top:1px solid var(--line-d);color:var(--on-dark-2);font-size:14px;padding:28px 0}
 footer .wrap{display:flex;flex-wrap:wrap;gap:6px 14px}footer a{color:var(--on-dark-2)}footer a:hover{color:var(--amber)}
+
+.mbtn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;background:none;border:1px solid rgba(255,255,255,.25);border-radius:10px;cursor:pointer;padding:0}
+.mbtn:hover{border-color:var(--amber,#f59e0b)}
+.mnav{position:absolute;top:100%;left:0;right:0;z-index:20;background:#0D1117;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 12px 24px rgba(0,0,0,.35);padding:6px 12px 12px}
+.mnav[hidden]{display:none}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 10px;color:#fff;text-decoration:none;font:600 16px/1 Inter,system-ui,sans-serif;border-bottom:1px solid rgba(255,255,255,.08)}
+.mnav a:last-child{border-bottom:0}.mnav a[aria-current]{color:#F59E0B}
+@media(min-width:960px){.mbtn,.mnav{display:none!important}}
+header .btn-sm{min-height:44px}
+header nav a,header .logo{min-height:44px;display:inline-flex;align-items:center}
+footer a,.crumbs a,.more-link a,main li a,main p a[href="/privacy"],.drop label{min-height:44px;display:inline-flex;align-items:center}
+footer .wrap a{display:flex}
 </style>
 </head>
 <body>
@@ -60,7 +72,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:6px 14px}footer a{color:var(--on-da
       <a href="/#contact">Contact</a>
     </nav>
     <a class="btn btn-sm" href="/#contact">Contact</a>
+    <button class="mbtn" id="mbtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></button>
   </div>
+  <div class="mnav" id="mnav" hidden><a href="/checkup">Checkup</a><a href="/tools" aria-current="page">Tools</a><a href="/pricing">Pricing</a><a href="/#portfolio">Our Work</a><a href="/#faq">Questions</a><a href="/#contact">Contact</a></div>
 </header>
 <main>
   <p class="crumbs"><a href="/">Home</a> › <a href="/tools">Tools</a> › PDF Tables to Spreadsheet</p>
@@ -98,5 +112,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:6px 14px}footer a{color:var(--on-da
   <a href="/">Home</a><a href="/tools">Tools</a><a href="/tools/pdf-tables">PDF Tables</a><a href="/tools/paper-forms">Paper Forms</a><a href="/guides/paper-to-spreadsheet">Paper-to-spreadsheet guide</a><a href="/fleets">Fleets</a><a href="/contractors">Contractors</a><a href="/shops">Shops</a><a href="/checkup">Spreadsheet Checkup</a><a href="/privacy">Privacy</a>
   <a href="mailto:hello@dataclearpath.com">hello@dataclearpath.com</a>
 </div></footer>
+<script>
+(function(){var b=document.getElementById('mbtn'),m=document.getElementById('mnav');if(!b||!m)return;
+function set(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu');}
+b.addEventListener('click',function(){set(m.hidden);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+m.addEventListener('click',function(e){if(e.target.tagName==='A')set(false);});
+})();
+</script>
 </body>
 </html>

@@ -37,12 +37,31 @@ table.keep th,table.keep td{border:1px solid #E7E1D6;padding:.55rem .7rem;text-a
 table.keep th{background:#F5F0E8}
 footer{background:#0d1117;color:rgba(255,255,255,.66);text-align:center;padding:2rem 1.5rem;font-size:.85rem;}
 footer a{color:rgba(255,255,255,.66);}
+
+.mbtn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;background:none;border:1px solid rgba(255,255,255,.25);border-radius:10px;cursor:pointer;padding:0}
+.mbtn:hover{border-color:var(--amber,#f59e0b)}
+.mnav{position:absolute;top:100%;left:0;right:0;z-index:20;background:#0D1117;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 12px 24px rgba(0,0,0,.35);padding:6px 12px 12px}
+.mnav[hidden]{display:none}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 10px;color:#fff;text-decoration:none;font:600 16px/1 Inter,system-ui,sans-serif;border-bottom:1px solid rgba(255,255,255,.08)}
+.mnav a:last-child{border-bottom:0}.mnav a[aria-current]{color:#F59E0B}
+@media(min-width:960px){.mbtn,.mnav{display:none!important}}
+header .btn-sm{min-height:44px}
+header nav a,header .logo{min-height:44px;display:inline-flex;align-items:center}
+footer a,.crumbs a,.more-link a,main li a,main p a[href="/privacy"],.drop label{min-height:44px;display:inline-flex;align-items:center}
+footer .wrap a{display:flex}
+nav{position:relative}
+.mnav{top:100%}
+main a,footer a{min-height:44px;display:inline-flex;align-items:center}
+nav a.back,nav>a:first-child{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:480px){nav img{height:38px}}
 </style>
 </head>
 <body>
 <nav>
   <a href="/"><img src="logo.png" alt="DataClearPath" width="910" height="225"/></a>
   <a class="back" href="/">← Back to home</a>
+  <button class="mbtn" id="mbtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+  <div class="mnav" id="mnav" hidden><a href="/checkup">Checkup</a><a href="/tools">Tools</a><a href="/pricing">Pricing</a><a href="/#portfolio">Our Work</a><a href="/#faq">Questions</a><a href="/#contact">Contact</a></div>
 </nav>
 <main>
   <div class="tag">Privacy</div>
@@ -101,5 +120,13 @@ footer a{color:rgba(255,255,255,.66);}
 <footer>
   © 2026 DataClearPath · <a href="/">Home</a> · <a href="mailto:hello@dataclearpath.com">hello@dataclearpath.com</a>
 </footer>
+<script>
+(function(){var b=document.getElementById('mbtn'),m=document.getElementById('mnav');if(!b||!m)return;
+function set(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu');}
+b.addEventListener('click',function(){set(m.hidden);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+m.addEventListener('click',function(e){if(e.target.tagName==='A')set(false);});
+})();
+</script>
 </body>
 </html>
